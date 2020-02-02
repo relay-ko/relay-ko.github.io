@@ -1,6 +1,6 @@
 ---
 id: type-emission
-title: Type Emission
+title: 타입 생성
 ---
 
 As part of its normal work, `relay-compiler` will emit type information for your language of choice that helps you write type-safe application code. These types are included in the artifacts that `relay-compiler` generates to describe your operations and fragments.

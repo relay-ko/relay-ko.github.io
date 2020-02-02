@@ -6,13 +6,13 @@
     "tagline": "React 기반의 Production-ready GraphQL 클라이언트",
     "docs": {
       "community-learning-resources": {
-        "title": "Community Learning Resources"
+        "title": "커뮤니티 학습 자료"
       },
       "graphql-server-specification": {
-        "title": "GraphQL Server Specification"
+        "title": "GraphQL 서버 명세"
       },
       "installation-and-setup": {
-        "title": "Installation and Setup"
+        "title": "설치 및 설정"
       },
       "introduction-to-relay": {
         "title": "Relay 시작하기"
@@ -30,13 +30,13 @@
         "title": "fetchQuery"
       },
       "fragment-container": {
-        "title": "Fragment 컨테이너"
+        "title": "Fragment Container"
       },
       "graphql-in-relay": {
-        "title": "GraphQL in Relay"
+        "title": "Relay 안에서의 GraphQL"
       },
       "local-state-management": {
-        "title": "Local State Management"
+        "title": "로컬 상태 관리"
       },
       "mutations": {
         "title": "Mutations"
@@ -63,37 +63,37 @@
         "title": "Relay Store"
       },
       "routing": {
-        "title": "Routing"
+        "title": "라우팅"
       },
       "subscriptions": {
         "title": "Subscriptions"
       },
       "testing-relay-components": {
-        "title": "Testing Relay Components"
+        "title": "Relay 컴포넌트를 테스트하기"
       },
       "type-emission": {
-        "title": "Type Emission"
+        "title": "타입 생성"
       },
       "compiler-architecture": {
-        "title": "Compiler Architecture"
+        "title": "컴파일러 설계"
       },
       "architecture-overview": {
-        "title": "Architecture Overview"
+        "title": "아키텍쳐 살펴보기"
       },
       "runtime-architecture": {
-        "title": "Runtime Architecture"
+        "title": "런타임 설계"
       },
       "thinking-in-graphql": {
-        "title": "Thinking in GraphQL"
+        "title": "GraphQL로 생각하기"
       },
       "thinking-in-relay": {
-        "title": "Thinking In Relay"
+        "title": "Relay로 생각하기"
       },
       "videos": {
-        "title": "Videos"
+        "title": "영상"
       },
       "version-1.5.0/version-1.5.0-installation-and-setup": {
-        "title": "Installation and Setup"
+        "title": "설치 및 설정"
       },
       "version-1.5.0/version-1.5.0-quick-start-guide": {
         "title": "빠른 시작 가이드"
@@ -123,10 +123,10 @@
         "title": "Subscriptions"
       },
       "version-1.5.0/version-1.5.0-thinking-in-graphql": {
-        "title": "Thinking in GraphQL"
+        "title": "GraphQL로 생각하기"
       },
       "version-1.6.0/version-1.6.0-installation-and-setup": {
-        "title": "Installation and Setup"
+        "title": "설치 및 설정"
       },
       "version-1.6.0/version-1.6.0-quick-start-guide": {
         "title": "빠른 시작 가이드"
@@ -135,7 +135,7 @@
         "title": "fetchQuery"
       },
       "version-1.6.0/version-1.6.0-graphql-in-relay": {
-        "title": "GraphQL in Relay"
+        "title": "Relay 안에서의 GraphQL"
       },
       "version-1.6.0/version-1.6.0-mutations": {
         "title": "Mutations"
@@ -147,13 +147,13 @@
         "title": "QueryRenderer"
       },
       "version-1.6.0/version-1.6.0-thinking-in-relay": {
-        "title": "Thinking In Relay"
+        "title": "Relay로 생각하기"
       },
       "version-1.6.1/version-1.6.1-installation-and-setup": {
-        "title": "Installation and Setup"
+        "title": "설치 및 설정"
       },
       "version-1.6.1/version-1.6.1-graphql-in-relay": {
-        "title": "GraphQL in Relay"
+        "title": "Relay 안에서의 GraphQL"
       },
       "version-1.6.1/version-1.6.1-network-layer": {
         "title": "Network Layer"
@@ -228,10 +228,10 @@
         "title": "RelayQueryRequest"
       },
       "version-classic/version-classic-graphql-server-specification": {
-        "title": "GraphQL Server Specification"
+        "title": "GraphQL 서버 명세"
       },
       "version-classic/version-classic-installation-and-setup": {
-        "title": "Installation and Setup"
+        "title": "설치 및 설정"
       },
       "version-classic/version-classic-introduction-to-relay": {
         "title": "Relay 시작하기"
@@ -261,10 +261,10 @@
         "title": "디버깅"
       },
       "version-classic/version-classic-fragment-container": {
-        "title": "Fragment 컨테이너"
+        "title": "Fragment Container"
       },
       "version-classic/version-classic-graphql-in-relay": {
-        "title": "GraphQL in Relay"
+        "title": "Relay 안에서의 GraphQL"
       },
       "version-classic/version-classic-migration-setup": {
         "title": "Migration Setup"
@@ -297,7 +297,7 @@
         "title": "Relay Store"
       },
       "version-classic/version-classic-routing": {
-        "title": "Routing"
+        "title": "라우팅"
       },
       "version-classic/version-classic-subscriptions": {
         "title": "Subscriptions"
@@ -306,22 +306,22 @@
         "title": "Upgrading setVariables"
       },
       "version-classic/version-classic-compiler-architecture": {
-        "title": "Compiler Architecture"
+        "title": "컴파일러 설계"
       },
       "version-classic/version-classic-architecture-overview": {
-        "title": "Architecture Overview"
+        "title": "아키텍쳐 살펴보기"
       },
       "version-classic/version-classic-runtime-architecture": {
-        "title": "Runtime Architecture"
+        "title": "런타임 설계"
       },
       "version-classic/version-classic-thinking-in-graphql": {
-        "title": "Thinking in GraphQL"
+        "title": "GraphQL로 생각하기"
       },
       "version-classic/version-classic-thinking-in-relay": {
-        "title": "Thinking In Relay"
+        "title": "Relay로 생각하기"
       },
       "version-classic/version-classic-videos": {
-        "title": "Videos"
+        "title": "영상"
       },
       "version-experimental/version-experimental-a-guided-tour-of-relay": {
         "title": "A Guided Tour"
@@ -333,7 +333,7 @@
         "title": "A Step By Step Guide"
       },
       "version-v1.7.0/version-v1.7.0-installation-and-setup": {
-        "title": "Installation and Setup"
+        "title": "설치 및 설정"
       },
       "version-v1.7.0/version-v1.7.0-quick-start-guide": {
         "title": "빠른 시작 가이드"
@@ -345,7 +345,7 @@
         "title": "fetchQuery"
       },
       "version-v1.7.0/version-v1.7.0-graphql-in-relay": {
-        "title": "GraphQL in Relay"
+        "title": "Relay 안에서의 GraphQL"
       },
       "version-v1.7.0/version-v1.7.0-mutations": {
         "title": "Mutations"
@@ -369,34 +369,34 @@
         "title": "Subscriptions"
       },
       "version-v1.7.0/version-v1.7.0-architecture-overview": {
-        "title": "Architecture Overview"
+        "title": "아키텍쳐 살펴보기"
       },
       "version-v1.7.0/version-v1.7.0-runtime-architecture": {
-        "title": "Runtime Architecture"
+        "title": "런타임 설계"
       },
       "version-v1.7.0/version-v1.7.0-thinking-in-graphql": {
-        "title": "Thinking in GraphQL"
+        "title": "GraphQL로 생각하기"
       },
       "version-v1.7.0/version-v1.7.0-thinking-in-relay": {
-        "title": "Thinking In Relay"
+        "title": "Relay로 생각하기"
       },
       "version-v1.7.0/version-v1.7.0-videos": {
-        "title": "Videos"
+        "title": "영상"
       },
       "version-v2.0.0/version-v2.0.0-community-learning-resources": {
-        "title": "Community Learning Resources"
+        "title": "커뮤니티 학습 자료"
       },
       "version-v2.0.0/version-v2.0.0-graphql-server-specification": {
-        "title": "GraphQL Server Specification"
+        "title": "GraphQL 서버 명세"
       },
       "version-v2.0.0/version-v2.0.0-installation-and-setup": {
-        "title": "Installation and Setup"
+        "title": "설치 및 설정"
       },
       "version-v2.0.0/version-v2.0.0-relay-debugging": {
         "title": "디버깅"
       },
       "version-v2.0.0/version-v2.0.0-graphql-in-relay": {
-        "title": "GraphQL in Relay"
+        "title": "Relay 안에서의 GraphQL"
       },
       "version-v2.0.0/version-v2.0.0-mutations": {
         "title": "Mutations"
@@ -405,10 +405,10 @@
         "title": "Persisted Queries"
       },
       "version-v3.0.0/version-v3.0.0-type-emission": {
-        "title": "Type Emission"
+        "title": "타입 생성"
       },
       "version-v4.0.0/version-v4.0.0-installation-and-setup": {
-        "title": "Installation and Setup"
+        "title": "설치 및 설정"
       },
       "version-v4.0.0/version-v4.0.0-quick-start-guide": {
         "title": "빠른 시작 가이드"
@@ -417,13 +417,13 @@
         "title": "fetchQuery"
       },
       "version-v4.0.0/version-v4.0.0-fragment-container": {
-        "title": "Fragment 컨테이너"
+        "title": "Fragment Container"
       },
       "version-v4.0.0/version-v4.0.0-graphql-in-relay": {
-        "title": "GraphQL in Relay"
+        "title": "Relay 안에서의 GraphQL"
       },
       "version-v4.0.0/version-v4.0.0-local-state-management": {
-        "title": "Local State Management"
+        "title": "로컬 상태 관리"
       },
       "version-v4.0.0/version-v4.0.0-mutations": {
         "title": "Mutations"
@@ -441,13 +441,13 @@
         "title": "Relay Store"
       },
       "version-v4.0.0/version-v4.0.0-testing-relay-components": {
-        "title": "Testing Relay Components"
+        "title": "Relay 컴포넌트를 테스트하기"
       },
       "version-v5.0.0/version-v5.0.0-graphql-server-specification": {
-        "title": "GraphQL Server Specification"
+        "title": "GraphQL 서버 명세"
       },
       "version-v5.0.0/version-v5.0.0-installation-and-setup": {
-        "title": "Installation and Setup"
+        "title": "설치 및 설정"
       },
       "version-v5.0.0/version-v5.0.0-quick-start-guide": {
         "title": "빠른 시작 가이드"
@@ -471,22 +471,22 @@
         "title": "Subscriptions"
       },
       "version-v5.0.0/version-v5.0.0-testing-relay-components": {
-        "title": "Testing Relay Components"
+        "title": "Relay 컴포넌트를 테스트하기"
       },
       "version-v5.0.0/version-v5.0.0-type-emission": {
-        "title": "Type Emission"
+        "title": "타입 생성"
       },
       "version-v6.0.0/version-v6.0.0-community-learning-resources": {
-        "title": "Community Learning Resources"
+        "title": "커뮤니티 학습 자료"
       },
       "version-v6.0.0/version-v6.0.0-installation-and-setup": {
-        "title": "Installation and Setup"
+        "title": "설치 및 설정"
       },
       "version-v6.0.0/version-v6.0.0-graphql-in-relay": {
-        "title": "GraphQL in Relay"
+        "title": "Relay 안에서의 GraphQL"
       },
       "version-v6.0.0/version-v6.0.0-local-state-management": {
-        "title": "Local State Management"
+        "title": "로컬 상태 관리"
       },
       "version-v6.0.0/version-v6.0.0-query-renderer": {
         "title": "QueryRenderer"
@@ -498,13 +498,13 @@
         "title": "Relay Environment"
       },
       "version-v7.0.0/version-v7.0.0-community-learning-resources": {
-        "title": "Community Learning Resources"
+        "title": "커뮤니티 학습 자료"
       },
       "version-v7.0.0/version-v7.0.0-fetch-query": {
         "title": "fetchQuery"
       },
       "version-v7.0.0/version-v7.0.0-graphql-in-relay": {
-        "title": "GraphQL in Relay"
+        "title": "Relay 안에서의 GraphQL"
       },
       "version-v7.0.0/version-v7.0.0-network-layer": {
         "title": "Network Layer"
@@ -513,10 +513,10 @@
         "title": "빠른 시작 가이드"
       },
       "version-v7.1.0/version-v7.1.0-local-state-management": {
-        "title": "Local State Management"
+        "title": "로컬 상태 관리"
       },
       "version-v8.0.0/version-v8.0.0-graphql-server-specification": {
-        "title": "GraphQL Server Specification"
+        "title": "GraphQL 서버 명세"
       },
       "version-v8.0.0/version-v8.0.0-mutations": {
         "title": "Mutations"
@@ -537,10 +537,7 @@
       "가이드": "가이드",
       "원칙과 설계": "원칙과 설계",
       "커뮤니티": "커뮤니티",
-      "API Reference": "API Reference",
-      "Guides": "Guides",
-      "Principles & Architecture": "Principles & Architecture",
-      "Community": "Community",
+      "시작하기": "시작하기",
       "Migration Guides": "Migration Guides",
       "Relay Hooks": "Relay Hooks",
       "Relay Classic Guides": "Relay Classic Guides",

@@ -1,6 +1,6 @@
 ---
 id: version-v5.0.0-type-emission
-title: Type Emission
+title: 타입 생성
 original_id: type-emission
 ---
 

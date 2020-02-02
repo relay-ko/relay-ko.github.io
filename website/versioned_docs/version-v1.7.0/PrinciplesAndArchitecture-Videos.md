@@ -1,6 +1,6 @@
 ---
 id: version-v1.7.0-videos
-title: Videos
+title: 영상
 original_id: videos
 ---
 ## [Facebook F8 2017](https://www.f8.com/)

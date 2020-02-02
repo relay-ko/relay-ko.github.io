@@ -1,6 +1,6 @@
 ---
 id: version-v8.0.0-graphql-server-specification
-title: GraphQL Server Specification
+title: GraphQL 서버 명세
 original_id: graphql-server-specification
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: community-learning-resources
-title: Community Learning Resources
+title: 커뮤니티 학습 자료
 ---
 
 ## Relay example projects

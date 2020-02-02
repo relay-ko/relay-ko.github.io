@@ -1,12 +1,12 @@
 {
   "version-v1.7.0-docs": {
-    "소개": [
+    "시작하기": [
       "version-v1.7.0-introduction-to-relay",
       "version-v1.7.0-prerequisites",
       "version-v1.7.0-installation-and-setup",
       "version-v1.7.0-quick-start-guide"
     ],
-    "API Reference": [
+    "API 레퍼런스": [
       "version-v1.7.0-graphql-in-relay",
       "version-v1.7.0-relay-environment",
       "version-v1.7.0-network-layer",
@@ -19,7 +19,7 @@
       "version-v1.7.0-relay-store",
       "version-v1.7.0-fetch-query"
     ],
-    "Guides": [
+    "가이드": [
       "version-v1.7.0-routing",
       "version-v1.7.0-relay-debugging",
       "version-v1.7.0-graphql-server-specification"
@@ -35,7 +35,7 @@
       "version-v1.7.0-compatibility-cheatsheet",
       "version-v1.7.0-api-cheatsheet"
     ],
-    "Principles & Architecture": [
+    "원칙과 설계": [
       "version-v1.7.0-thinking-in-graphql",
       "version-v1.7.0-thinking-in-relay",
       "version-v1.7.0-architecture-overview",

@@ -1,6 +1,6 @@
 ---
 id: local-state-management
-title: Local State Management
+title: 로컬 상태 관리
 ---
 
 Relay can be used to read and write local data, and act as a single source of truth for *all* data in your client application.  

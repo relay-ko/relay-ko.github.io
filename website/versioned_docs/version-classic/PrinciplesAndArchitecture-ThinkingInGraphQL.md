@@ -1,6 +1,6 @@
 ---
 id: version-classic-thinking-in-graphql
-title: Thinking in GraphQL
+title: GraphQL로 생각하기
 original_id: thinking-in-graphql
 ---
 

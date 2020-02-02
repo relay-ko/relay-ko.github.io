@@ -1,6 +1,6 @@
 ---
 id: installation-and-setup
-title: Installation and Setup
+title: 설치 및 설정
 ---
 
 ## Installation

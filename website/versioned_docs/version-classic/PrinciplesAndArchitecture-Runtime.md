@@ -1,6 +1,6 @@
 ---
 id: version-classic-runtime-architecture
-title: Runtime Architecture
+title: 런타임 설계
 original_id: runtime-architecture
 ---
 

@@ -1,12 +1,12 @@
 {
   "version-v3.0.0-docs": {
-    "소개": [
+    "시작하기": [
       "version-v3.0.0-introduction-to-relay",
       "version-v3.0.0-prerequisites",
       "version-v3.0.0-installation-and-setup",
       "version-v3.0.0-quick-start-guide"
     ],
-    "API Reference": [
+    "API 레퍼런스": [
       "version-v3.0.0-graphql-in-relay",
       "version-v3.0.0-relay-environment",
       "version-v3.0.0-network-layer",
@@ -19,7 +19,7 @@
       "version-v3.0.0-relay-store",
       "version-v3.0.0-fetch-query"
     ],
-    "Guides": [
+    "가이드": [
       "version-v3.0.0-routing",
       "version-v3.0.0-relay-debugging",
       "version-v3.0.0-graphql-server-specification",
@@ -37,7 +37,7 @@
       "version-v3.0.0-compatibility-cheatsheet",
       "version-v3.0.0-api-cheatsheet"
     ],
-    "Principles & Architecture": [
+    "원칙과 설계": [
       "version-v3.0.0-thinking-in-graphql",
       "version-v3.0.0-thinking-in-relay",
       "version-v3.0.0-architecture-overview",
@@ -45,7 +45,7 @@
       "version-v3.0.0-runtime-architecture",
       "version-v3.0.0-videos"
     ],
-    "Community": [
+    "커뮤니티": [
       "version-v3.0.0-community-learning-resources"
     ]
   }

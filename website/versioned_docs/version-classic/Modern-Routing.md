@@ -1,6 +1,6 @@
 ---
 id: version-classic-routing
-title: Routing
+title: 라우팅
 original_id: routing
 ---
 

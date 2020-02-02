@@ -1,6 +1,6 @@
 ---
 id: version-v5.0.0-testing-relay-components
-title: Testing Relay Components
+title: Relay 컴포넌트를 테스트하기
 original_id: testing-relay-components
 ---
 The purpose of this document is to cover the Relay APIs for testing Relay components.

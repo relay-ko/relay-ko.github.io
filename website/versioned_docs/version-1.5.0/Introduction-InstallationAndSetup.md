@@ -1,6 +1,6 @@
 ---
 id: version-1.5.0-installation-and-setup
-title: Installation and Setup
+title: 설치 및 설정
 original_id: installation-and-setup
 ---
 

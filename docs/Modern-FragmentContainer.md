@@ -1,6 +1,6 @@
 ---
 id: fragment-container
-title: Fragment 컨테이너
+title: Fragment Container
 ---
 
 A Fragment Container is a [higher-order component](https://reactjs.org/docs/higher-order-components.html) that allows components to specify their data requirements. A container does not directly fetch data, but instead declares a *specification* of the data needed for rendering, and then Relay will guarantee that this data is available *before* rendering occurs.

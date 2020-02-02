@@ -1,6 +1,6 @@
 ---
 id: version-v4.0.0-local-state-management
-title: Local State Management
+title: 로컬 상태 관리
 original_id: local-state-management
 ---
 

@@ -1,12 +1,12 @@
 {
   "version-1.6.0-docs": {
-    "소개": [
+    "시작하기": [
       "version-1.6.0-introduction-to-relay",
       "version-1.6.0-prerequisites",
       "version-1.6.0-installation-and-setup",
       "version-1.6.0-quick-start-guide"
     ],
-    "API Reference": [
+    "API 레퍼런스": [
       "version-1.6.0-graphql-in-relay",
       "version-1.6.0-relay-environment",
       "version-1.6.0-network-layer",
@@ -19,7 +19,7 @@
       "version-1.6.0-relay-store",
       "version-1.6.0-fetch-query"
     ],
-    "Guides": [
+    "가이드": [
       "version-1.6.0-routing",
       "version-1.6.0-relay-debugging",
       "version-1.6.0-graphql-server-specification"
@@ -35,7 +35,7 @@
       "version-1.6.0-compatibility-cheatsheet",
       "version-1.6.0-api-cheatsheet"
     ],
-    "Principles & Architecture": [
+    "원칙과 설계": [
       "version-1.6.0-thinking-in-graphql",
       "version-1.6.0-thinking-in-relay",
       "version-1.6.0-architecture-overview",

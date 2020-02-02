@@ -1,12 +1,12 @@
 {
   "version-v1.4.1-docs": {
-    "소개": [
+    "시작하기": [
       "version-v1.4.1-introduction-to-relay",
       "version-v1.4.1-prerequisites",
       "version-v1.4.1-installation-and-setup",
       "version-v1.4.1-quick-start-guide"
     ],
-    "API Reference": [
+    "API 레퍼런스": [
       "version-v1.4.1-graphql-in-relay",
       "version-v1.4.1-relay-environment",
       "version-v1.4.1-network-layer",
@@ -18,7 +18,7 @@
       "version-v1.4.1-subscriptions",
       "version-v1.4.1-relay-store"
     ],
-    "Guides": [
+    "가이드": [
       "version-v1.4.1-routing",
       "version-v1.4.1-relay-debugging",
       "version-v1.4.1-graphql-server-specification"
@@ -34,7 +34,7 @@
       "version-v1.4.1-compatibility-cheatsheet",
       "version-v1.4.1-api-cheatsheet"
     ],
-    "Principles & Architecture": [
+    "원칙과 설계": [
       "version-v1.4.1-thinking-in-graphql",
       "version-v1.4.1-thinking-in-relay",
       "version-v1.4.1-architecture-overview",
