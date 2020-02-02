@@ -262,6 +262,12 @@
   grid-gap: 3em;
   margin-bottom: 2em;
 }
+
+@media (max-width: 600px) {
+  .logosHomepage {
+    grid-template-columns: 1fr;
+  }
+}
 .logosHomepage a {
   display: flex;
 }

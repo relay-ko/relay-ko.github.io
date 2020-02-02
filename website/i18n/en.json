@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "The production-ready GraphQL client for React.",
+    "tagline": "React 기반의 Production-ready GraphQL 클라이언트",
     "docs": {
       "community-learning-resources": {
         "title": "Community Learning Resources"
@@ -526,9 +526,10 @@
       }
     },
     "links": {
-      "Docs": "Docs",
-      "Help": "Help",
-      "GitHub": "GitHub"
+      "문서": "문서",
+      "도움": "도움",
+      "GitHub": "GitHub",
+      "🇰🇷한국어 번역": "🇰🇷한국어 번역"
     },
     "categories": {
       "Introduction": "Introduction",
