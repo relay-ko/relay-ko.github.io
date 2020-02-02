@@ -168,7 +168,7 @@ const siteConfig = {
   tagline: 'React 기반의 Production-ready GraphQL 클라이언트',
   url: 'https://relay.dev',
   baseUrl: '/',
-  projectName: 'relay',
+  projectName: 'relay-ko',
   users,
   editUrl: 'https://github.com/facebook/relay/edit/master/docs/',
   headerLinks: [
