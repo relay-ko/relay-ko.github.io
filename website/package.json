@@ -1,19 +1,13 @@
 {
-  "repository": "facebook/relay",
+  "name": "relay-ko-website",
+  "description": "Relay 공식 문서 한국어 번역",
+  "repository": "https://github.com/tonyfromundefined/relay-ko",
   "license": "MIT",
-  "private": true,
   "scripts": {
-    "update-spec": "spec-md spec/Connections.md > static/graphql/connections.htm && spec-md spec/ObjectIdentification.md > static/graphql/objectidentification.htm",
     "start": "docusaurus-start",
     "build": "docusaurus-build",
-    "examples": "docusaurus-examples",
-    "version": "docusaurus-version",
-    "rename-version": "docusaurus-rename-version",
-    "publish-gh-pages": "docusaurus-publish",
-    "write-translations": "docusaurus-write-translations",
-    "crowdin-upload": "crowdin-cli --config ../crowdin.yaml upload sources --auto-update -b master",
-    "crowdin-download": "crowdin-cli --config ../crowdin.yaml download -b master",
-    "update-specs":"spec-md spec/Connections.md > static/graphql/connections.htm; spec-md spec/Mutations.md > static/graphql/mutations.htm; spec-md spec/ObjectIdentification.md > static/graphql/objectidentification.htm"
+    "deploy": "gh-pages -d build/relay-ko",
+    "update-specs": "spec-md spec/Connections.md > static/graphql/connections.htm; spec-md spec/Mutations.md > static/graphql/mutations.htm; spec-md spec/ObjectIdentification.md > static/graphql/objectidentification.htm"
   },
   "dependencies": {
     "docusaurus": "1.14.0",
@@ -21,5 +15,9 @@
   },
   "resolutions": {
     "underscore.string": "^3.3.5"
-  }
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  },
+  "version": "0.0.0"
 }
