@@ -1,6 +1,6 @@
 ---
 id: version-classic-thinking-in-relay
-title: Relay로 생각하기
+title: Thinking in Relay
 original_id: thinking-in-relay
 ---
 

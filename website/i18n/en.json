@@ -84,10 +84,10 @@
         "title": "런타임 설계"
       },
       "thinking-in-graphql": {
-        "title": "GraphQL로 생각하기"
+        "title": "Thinking in GraphQL"
       },
       "thinking-in-relay": {
-        "title": "Relay로 생각하기"
+        "title": "Thinking in Relay"
       },
       "videos": {
         "title": "영상"
@@ -123,7 +123,7 @@
         "title": "Subscriptions"
       },
       "version-1.5.0/version-1.5.0-thinking-in-graphql": {
-        "title": "GraphQL로 생각하기"
+        "title": "Thinking in GraphQL"
       },
       "version-1.6.0/version-1.6.0-installation-and-setup": {
         "title": "설치 및 설정"
@@ -147,7 +147,7 @@
         "title": "QueryRenderer"
       },
       "version-1.6.0/version-1.6.0-thinking-in-relay": {
-        "title": "Relay로 생각하기"
+        "title": "Thinking in Relay"
       },
       "version-1.6.1/version-1.6.1-installation-and-setup": {
         "title": "설치 및 설정"
@@ -315,10 +315,10 @@
         "title": "런타임 설계"
       },
       "version-classic/version-classic-thinking-in-graphql": {
-        "title": "GraphQL로 생각하기"
+        "title": "Thinking in GraphQL"
       },
       "version-classic/version-classic-thinking-in-relay": {
-        "title": "Relay로 생각하기"
+        "title": "Thinking in Relay"
       },
       "version-classic/version-classic-videos": {
         "title": "영상"
@@ -375,10 +375,10 @@
         "title": "런타임 설계"
       },
       "version-v1.7.0/version-v1.7.0-thinking-in-graphql": {
-        "title": "GraphQL로 생각하기"
+        "title": "Thinking in GraphQL"
       },
       "version-v1.7.0/version-v1.7.0-thinking-in-relay": {
-        "title": "Relay로 생각하기"
+        "title": "Thinking in Relay"
       },
       "version-v1.7.0/version-v1.7.0-videos": {
         "title": "영상"
