@@ -2,7 +2,7 @@
   "name": "relay-ko-website",
   "version": "0.0.0",
   "description": "Relay 공식 문서 한국어 번역",
-  "repository": "https://github.com/tonyfromundefined/relay-ko",
+  "repository": "https://github.com/relay-ko/relay-ko.github.io",
   "license": "MIT",
   "scripts": {
     "build": "docusaurus-build",

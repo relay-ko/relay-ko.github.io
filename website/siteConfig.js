@@ -179,7 +179,7 @@ const siteConfig = {
       label: 'GitHub',
     },
     {
-      href: 'https://github.com/tonyfromundefined/relay-kr',
+      href: 'https://github.com/relay-ko/relay-ko.github.io',
       label: '🇰🇷한국어 번역',
     },
     {languages: false},
