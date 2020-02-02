@@ -18,7 +18,7 @@
         "title": "Relay 시작하기"
       },
       "prerequisites": {
-        "title": "Prerequisites"
+        "title": "사전 준비사항"
       },
       "quick-start-guide": {
         "title": "빠른 시작 가이드"
@@ -33,7 +33,7 @@
         "title": "Fragment Container"
       },
       "graphql-in-relay": {
-        "title": "Relay 안에서의 GraphQL"
+        "title": "Relay에서의 GraphQL"
       },
       "local-state-management": {
         "title": "로컬 상태 관리"
@@ -135,7 +135,7 @@
         "title": "fetchQuery"
       },
       "version-1.6.0/version-1.6.0-graphql-in-relay": {
-        "title": "Relay 안에서의 GraphQL"
+        "title": "Relay에서의 GraphQL"
       },
       "version-1.6.0/version-1.6.0-mutations": {
         "title": "Mutations"
@@ -153,7 +153,7 @@
         "title": "설치 및 설정"
       },
       "version-1.6.1/version-1.6.1-graphql-in-relay": {
-        "title": "Relay 안에서의 GraphQL"
+        "title": "Relay에서의 GraphQL"
       },
       "version-1.6.1/version-1.6.1-network-layer": {
         "title": "Network Layer"
@@ -237,7 +237,7 @@
         "title": "Relay 시작하기"
       },
       "version-classic/version-classic-prerequisites": {
-        "title": "Prerequisites"
+        "title": "사전 준비사항"
       },
       "version-classic/version-classic-quick-start-guide": {
         "title": "빠른 시작 가이드"
@@ -264,7 +264,7 @@
         "title": "Fragment Container"
       },
       "version-classic/version-classic-graphql-in-relay": {
-        "title": "Relay 안에서의 GraphQL"
+        "title": "Relay에서의 GraphQL"
       },
       "version-classic/version-classic-migration-setup": {
         "title": "Migration Setup"
@@ -345,7 +345,7 @@
         "title": "fetchQuery"
       },
       "version-v1.7.0/version-v1.7.0-graphql-in-relay": {
-        "title": "Relay 안에서의 GraphQL"
+        "title": "Relay에서의 GraphQL"
       },
       "version-v1.7.0/version-v1.7.0-mutations": {
         "title": "Mutations"
@@ -396,7 +396,7 @@
         "title": "디버깅"
       },
       "version-v2.0.0/version-v2.0.0-graphql-in-relay": {
-        "title": "Relay 안에서의 GraphQL"
+        "title": "Relay에서의 GraphQL"
       },
       "version-v2.0.0/version-v2.0.0-mutations": {
         "title": "Mutations"
@@ -420,7 +420,7 @@
         "title": "Fragment Container"
       },
       "version-v4.0.0/version-v4.0.0-graphql-in-relay": {
-        "title": "Relay 안에서의 GraphQL"
+        "title": "Relay에서의 GraphQL"
       },
       "version-v4.0.0/version-v4.0.0-local-state-management": {
         "title": "로컬 상태 관리"
@@ -483,7 +483,7 @@
         "title": "설치 및 설정"
       },
       "version-v6.0.0/version-v6.0.0-graphql-in-relay": {
-        "title": "Relay 안에서의 GraphQL"
+        "title": "Relay에서의 GraphQL"
       },
       "version-v6.0.0/version-v6.0.0-local-state-management": {
         "title": "로컬 상태 관리"
@@ -504,7 +504,7 @@
         "title": "fetchQuery"
       },
       "version-v7.0.0/version-v7.0.0-graphql-in-relay": {
-        "title": "Relay 안에서의 GraphQL"
+        "title": "Relay에서의 GraphQL"
       },
       "version-v7.0.0/version-v7.0.0-network-layer": {
         "title": "Network Layer"

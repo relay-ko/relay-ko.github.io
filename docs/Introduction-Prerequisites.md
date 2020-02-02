@@ -1,6 +1,6 @@
 ---
 id: prerequisites
-title: Prerequisites
+title: 사전 준비사항
 ---
 
 ## React

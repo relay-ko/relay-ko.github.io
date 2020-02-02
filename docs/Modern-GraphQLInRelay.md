@@ -1,6 +1,6 @@
 ---
 id: graphql-in-relay
-title: Relay 안에서의 GraphQL
+title: Relay에서의 GraphQL
 ---
 
 Table of Contents:
