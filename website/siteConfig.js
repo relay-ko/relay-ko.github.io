@@ -170,7 +170,7 @@ const siteConfig = {
   baseUrl: '/',
   projectName: 'relay-ko',
   users,
-  editUrl: 'https://github.com/facebook/relay/edit/master/docs/',
+  editUrl: 'https://github.com/relay-ko/relay-ko.github.io/edit/develop/docs/',
   headerLinks: [
     {doc: 'introduction-to-relay', label: '문서'},
     {page: 'help', label: '도움'},

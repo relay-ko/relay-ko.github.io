@@ -31,7 +31,7 @@ class Footer extends React.Component {
               href={
                 this.props.config.baseUrl + 'docs/introduction-to-relay.html'
               }>
-              소개
+              시작하기
             </a>
           </div>
           <div>
