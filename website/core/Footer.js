@@ -26,25 +26,23 @@ class Footer extends React.Component {
             />
           </a>
           <div>
-            <h5>Docs</h5>
+            <h5>문서</h5>
             <a
               href={
-                this.props.config.baseUrl + 'docs/en/introduction-to-relay.html'
+                this.props.config.baseUrl + 'docs/introduction-to-relay.html'
               }>
-              Introduction
+              소개
             </a>
           </div>
           <div>
-            <h5>Community</h5>
+            <h5>커뮤니티</h5>
             <a
-              href={
-                this.props.config.baseUrl + this.props.language + '/users.html'
-              }>
-              User Showcase
+              href='/users.html'>
+              유저 Showcase
             </a>
           </div>
           <div>
-            <h5>More</h5>
+            <h5>더 보기</h5>
             <a href="https://github.com/facebook/relay">GitHub</a>
             <a
               className="github-button"
@@ -71,7 +69,7 @@ class Footer extends React.Component {
           />
         </a>
         <section className="copyright">
-          Copyright &copy; {currentYear} Facebook Inc.
+          Copyright &copy; {currentYear} Facebook Inc. / Translated by Tony (@tonyfromundefined)
         </section>
       </footer>
     );

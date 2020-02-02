@@ -29,9 +29,9 @@ class Versions extends React.Component {
               <h2>{siteConfig.title + ' Versions'}</h2>
             </header>
             <a name="next" />
-            <h3>Latest Version</h3>
+            <h3>다음 버전</h3>
             <p>
-              Here you can find the latest unreleased documentation and code.
+              아직 릴리즈되지 않은 문서와 코드를 확인할 수 있습니다.
             </p>
             <table className="versions">
               <tbody>
@@ -41,19 +41,19 @@ class Versions extends React.Component {
                     <a
                       href={`${
                         siteConfig.baseUrl
-                      }docs/en/next/introduction-to-relay`}>
-                      Documentation
+                      }docs/next/introduction-to-relay`}>
+                      문서
                     </a>
                   </td>
                   <td>
-                    <a href="https://github.com/facebook/relay">Source Code</a>
+                    <a href="https://github.com/facebook/relay">소스 코드</a>
                   </td>
                 </tr>
               </tbody>
             </table>
             <a name="latest" />
-            <h3>Current Version (Stable)</h3>
-            <p>Latest stable version of Relay Modern</p>
+            <h3>현재 버전 (안정적)</h3>
+            <p>Relay Modern의 안정적인 가장 최신 버전</p>
             <table className="versions">
               <tbody>
                 <tr>
@@ -62,21 +62,21 @@ class Versions extends React.Component {
                     <a
                       href={`${
                         siteConfig.baseUrl
-                      }docs/en/introduction-to-relay`}>
-                      Documentation
+                      }docs/introduction-to-relay`}>
+                      문서
                     </a>
                   </td>
                   <td>
                     <a
                       href={`https://github.com/facebook/relay/releases/tag/${latestVersion}`}>
-                      Release Notes
+                      릴리즈 노트
                     </a>
                   </td>
                 </tr>
               </tbody>
             </table>
             <a name="archive" />
-            <h3>Experimental</h3>
+            <h3>실험적 버전</h3>
             <table className="versions">
               <tbody>
                 {versions.map(
@@ -88,8 +88,8 @@ class Versions extends React.Component {
                           <a
                             href={`${
                               siteConfig.baseUrl
-                            }docs/en/${version}/step-by-step`}>
-                            Documentation
+                            }docs/${version}/step-by-step`}>
+                            문서
                           </a>
                         </td>
                       </tr>
@@ -97,11 +97,9 @@ class Versions extends React.Component {
                 )}
               </tbody>
             </table>
-            <h3>Past Versions</h3>
+            <h3>과거 버전</h3>
             <p>
-              This section contains documentation and release notes for previous
-              versions of Relay, as well as a reference to Relay Classic docs,
-              which is the old, now deprecated, version of Relay.
+              이 섹션은 이전 Relay 버전의 문서와 릴리즈 노트 뿐만 아니라 현재 Deprecated 된 Relay Classic 문서까지 포함합니다.
             </p>
             <table className="versions">
               <tbody>
@@ -117,19 +115,19 @@ class Versions extends React.Component {
                               version === 'classic'
                                 ? `${
                                     siteConfig.baseUrl
-                                  }docs/en/${version}/classic-guides-containers`
+                                  }docs/${version}/classic-guides-containers`
                                 : `${
                                     siteConfig.baseUrl
-                                  }docs/en/${version}/introduction-to-relay`
+                                  }docs/${version}/introduction-to-relay`
                             }>
-                            Documentation
+                            문서
                           </a>
                         </td>
                         {version !== 'classic' ? (
                           <td>
                             <a
                               href={`https://github.com/facebook/relay/releases/tag/${version}`}>
-                              Release Notes
+                              릴리즈 노트
                             </a>
                           </td>
                         ) : null}

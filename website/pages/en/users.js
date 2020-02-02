@@ -28,15 +28,15 @@ class Users extends React.Component {
         <Container padding={['bottom', 'top']}>
           <div className="showcaseSection">
             <div className="prose">
-              <h1>Who's Using Relay?</h1>
-              <p>Relay is used by many folks</p>
+              <h1>Relay를 사용하시나요?</h1>
+              <p>많은 사람들이 릴레이를 사용합니다</p>
             </div>
             <div className="logos">{showcase}</div>
-            <p>Are you using this project?</p>
+            <p>이 프로젝트를 사용중이신가요?</p>
             <a
               href="https://github.com/facebook/relay/edit/master/website/siteConfig.js"
               className="button">
-              Add your project
+              내 프로젝트 추가하기
             </a>
           </div>
         </Container>

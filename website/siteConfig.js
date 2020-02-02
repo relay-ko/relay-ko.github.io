@@ -165,19 +165,22 @@ const users = [
 
 const siteConfig = {
   title: 'Relay',
-  tagline: 'The production-ready GraphQL client for React.',
+  tagline: 'React 기반의 Production-ready GraphQL 클라이언트',
   url: 'https://relay.dev',
   baseUrl: '/',
   projectName: 'relay',
   users,
   editUrl: 'https://github.com/facebook/relay/edit/master/docs/',
   headerLinks: [
-    {doc: 'introduction-to-relay', label: 'Docs'},
-    {page: 'help', label: 'Help'},
-    // {search: true},
+    {doc: 'introduction-to-relay', label: '문서'},
+    {page: 'help', label: '도움'},
     {
       href: 'https://github.com/facebook/relay',
       label: 'GitHub',
+    },
+    {
+      href: 'https://github.com/tonyfromundefined/relay-kr',
+      label: '🇰🇷한국어 번역',
     },
     {languages: false},
   ],
