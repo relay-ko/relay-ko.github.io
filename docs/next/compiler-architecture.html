@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>컴파일러 설계 · Relay</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="The compiler is a set of modules designed to extract GraphQL documents from across a codebase, transform/optimize them, and generate build artifacts. Examples of common types of artifacts include optimized GraphQL to persist to your server, runtime representations of the queries for use with GraphQL clients such as the Relay runtime, or generated source code for use with GraphQL frameworks for compiled languages (Java/Swift/etc)."/><meta name="docsearch:version" content="next"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="컴파일러 설계 · Relay"/><meta property="og:type" content="website"/><meta property="og:url" content="https://relay.dev/"/><meta property="og:description" content="The compiler is a set of modules designed to extract GraphQL documents from across a codebase, transform/optimize them, and generate build artifacts. Examples of common types of artifacts include optimized GraphQL to persist to your server, runtime representations of the queries for use with GraphQL clients such as the Relay runtime, or generated source code for use with GraphQL frameworks for compiled languages (Java/Swift/etc)."/><meta property="og:image" content="https://relay.dev/img/relay.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://relay.dev/img/relay.png"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="/js/redirect.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><h2 class="headerTitle">Relay</h2></a><a href="/versions"><h3>next</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/next/introduction-to-relay" target="_self">문서</a></li><li class=""><a href="/help" target="_self">도움</a></li><li class=""><a href="https://github.com/facebook/relay" target="_self">GitHub</a></li><li class=""><a href="https://github.com/tonyfromundefined/relay-kr" target="_self">🇰🇷한국어 번역</a></li><li class=""><a target="_self"></a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>원칙과 설계</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">소개<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/next/introduction-to-relay">Relay 시작하기</a></li><li class="navListItem"><a class="navItem" href="/docs/next/prerequisites">사전 준비사항</a></li><li class="navListItem"><a class="navItem" href="/docs/next/installation-and-setup">설치 및 설정</a></li><li class="navListItem"><a class="navItem" href="/docs/next/quick-start-guide">빠른 시작 가이드</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">API 레퍼런스<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/next/graphql-in-relay">Relay에서의 GraphQL</a></li><li class="navListItem"><a class="navItem" href="/docs/next/relay-environment">Relay Environment</a></li><li class="navListItem"><a class="navItem" href="/docs/next/network-layer">Network Layer</a></li><li class="navListItem"><a class="navItem" href="/docs/next/query-renderer">QueryRenderer</a></li><li class="navListItem"><a class="navItem" href="/docs/next/fragment-container">Fragment Container</a></li><li class="navListItem"><a class="navItem" href="/docs/next/refetch-container">Refetch Container</a></li><li class="navListItem"><a class="navItem" href="/docs/next/pagination-container">Pagination Container</a></li><li class="navListItem"><a class="navItem" href="/docs/next/mutations">Mutations</a></li><li class="navListItem"><a class="navItem" href="/docs/next/subscriptions">Subscriptions</a></li><li class="navListItem"><a class="navItem" href="/docs/next/relay-store">Relay Store</a></li><li class="navListItem"><a class="navItem" href="/docs/next/fetch-query">fetchQuery</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">가이드<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/next/routing">라우팅</a></li><li class="navListItem"><a class="navItem" href="/docs/next/relay-debugging">디버깅</a></li><li class="navListItem"><a class="navItem" href="/docs/next/graphql-server-specification">GraphQL 서버 명세</a></li><li class="navListItem"><a class="navItem" href="/docs/next/persisted-queries">Persisted Queries</a></li><li class="navListItem"><a class="navItem" href="/docs/next/type-emission">타입 생성</a></li><li class="navListItem"><a class="navItem" href="/docs/next/testing-relay-components">Relay 컴포넌트를 테스트하기</a></li><li class="navListItem"><a class="navItem" href="/docs/next/local-state-management">로컬 상태 관리</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">원칙과 설계<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/next/thinking-in-graphql">GraphQL로 생각하기</a></li><li class="navListItem"><a class="navItem" href="/docs/next/thinking-in-relay">Relay로 생각하기</a></li><li class="navListItem"><a class="navItem" href="/docs/next/architecture-overview">아키텍쳐 살펴보기</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/next/compiler-architecture">컴파일러 설계</a></li><li class="navListItem"><a class="navItem" href="/docs/next/runtime-architecture">런타임 설계</a></li><li class="navListItem"><a class="navItem" href="/docs/next/videos">영상</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">커뮤니티<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docs/next/community-learning-resources">커뮤니티 학습 자료</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><a class="edit-page-link button" href="https://github.com/facebook/relay/edit/master/docs/PrinciplesAndArchitecture-Compiler.md" target="_blank" rel="noreferrer noopener">Edit</a><h1 class="postHeaderTitle">컴파일러 설계</h1></header><article><div><span><p>The compiler is a set of modules designed to extract GraphQL documents from across a codebase, transform/optimize them, and generate build artifacts. Examples of common types of artifacts include optimized GraphQL to persist to your server, runtime representations of the queries for use with GraphQL clients such as the Relay runtime, or generated source code for use with GraphQL frameworks for compiled languages (Java/Swift/etc).</p>
+<h2><a class="anchor" aria-hidden="true" id="data-flow"></a><a href="#data-flow" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Data Flow</h2>
+<p>The high-level flow of data through the compiler is represented in the following diagram:</p>
+<pre><code class="hljs">                   ┌─────────────┐┌─────────────┐
+                   │   GraphQL   ││   Schema    │
+                   └─────────────┘└─────────────┘
+                          │              │              <span class="hljs-keyword">parse</span>
+                          └───────┬──────┘
+                                  ▼
+                   ┌────────────────────────────┐
+                   │      CompilerContext       │
+                   │                            │
+                   │   ┌─────┐ ┌─────┐ ┌─────┐  │──┐
+                   │   │ <span class="hljs-keyword">IR</span>  │ │ <span class="hljs-keyword">IR</span>  │ │ ... │  │  │
+                   │   └─────┘ └─────┘ └─────┘  │  │
+                   └────────────────────────────┘  │  transform/
+                          │    │      ▲            │   optimize
+                          │    │      └────────────┘
+                          │    │
+                          │    └──────────┐
+                          │  <span class="hljs-keyword">print</span>        │  codegen
+                          ▼               ▼
+                   ┌─────────────┐ ┌─────────────┐
+                   │   GraphQL   │ │  Artifacts  │
+                   └─────────────┘ └─────────────┘
+</code></pre>
+<ol>
+<li>GraphQL text is extracted from source files and &quot;parsed&quot; into an intermediate representation (IR) using information from the schema.</li>
+<li>The set of IR documents forms a CompilerContext, which is then transformed and optimized.</li>
+<li>Finally, GraphQL is printed (e.g. to files, saved to a database, etc) and any artifacts are generated.</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="data-types-modules"></a><a href="#data-types-modules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Data Types &amp; Modules</h2>
+<p>The compiler module is composed of a set of core building blocks as well as a helper that packages them together in an easy to use API. Some of the main data types and modules in the compiler are as follows:</p>
+<ul>
+<li><code>IR</code> (Intermediate Representation): an (effectively immutable) representation of a GraphQL document (query, fragment, field, etc) as a tree structure, including type information from a schema. Compared to the standard GraphQL AST (produced by e.g. <code>graphql-js</code>) the main difference is that it encodes more of the semantics of GraphQL. For example, conditional branches (<code>@include</code> and <code>@skip</code>) are represented directly, making it easier to target optimizations for these directives (One such optimization is to merge sibling fields with the same condition, potentially reducing the number of conditionals that must be evaluated at runtime).</li>
+<li><code>CompilerContext</code>: an immutable representation of a corpus of GraphQL documents. It contains the schema and a mapping of document names to document representations (as IR, see above).</li>
+<li><code>Transform</code>: a &quot;map&quot;-like function that accepts a <code>CompilerContext</code> as input and returns a new, modified context as output. Examples below.</li>
+<li><code>Parser</code>: Converts a GraphQL schema and raw GraphQL text into typed IR objects.</li>
+<li><code>Printer</code>: a function that accepts IR and converts it to a GraphQL string.</li>
+</ul>
+<p>The <code>RelayCompiler</code> module is a helper class that demonstrates one way of combining these primitives. It takes IR transforms, and given IR definitions, constructs a CompilerContext from them, transforming them, and generating output artifacts intended for use with Relay runtime.</p>
+<h2><a class="anchor" aria-hidden="true" id="transforms"></a><a href="#transforms" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Transforms</h2>
+<p>One of the main goals of the compiler is to provide a consistent platform for writing tools that transform or optimize GraphQL. This includes the ability to experiment with new directives by transforming them away at compile time. Transform functions should typically perform a single type of modification - it's expected that an app will have multiple transforms configured in the compiler instance.</p>
+<p>Here are a few examples of some of the included transforms:</p>
+<ul>
+<li><code>FlattenTransform</code>: Reduces extraneous levels of indirection in a query, inlining fields from anonymous fragments wherever they match the parent type. This can be beneficial when generating code to read the results of a query or process query results, as it reduces duplicate field processing. For example:</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-comment"># before: `id` is processed twice</span>
+foo { #<span class="hljs-built_in"> type </span>FooType
+   id
+   <span class="hljs-built_in">..</span>. on FooType { # matches the parent type, so this is extraneous
+     id
+   }
+ }
+
+ # after: `id` is processed once
+ foo {
+   id
+ }
+</code></pre>
+<ul>
+<li><code>SkipRedundantNodeTransform</code>: A more advanced version of flattening, this eliminates more complex cases of field duplication such as when a field is fetched both unconditionally and conditionally, or is fetched by two different sub-fragments. For example:</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-comment"># before: `id` processed up to 2x</span>
+<span class="hljs-section">foo</span> {
+  <span class="hljs-section">bar</span> {
+    <span class="hljs-attribute">id</span>
+  }
+  ... <span class="hljs-literal">on</span> FooType <span class="hljs-variable">@include</span>(if: <span class="hljs-variable">$cond</span>) { <span class="hljs-comment"># can't be flattened due to conditional</span>
+    <span class="hljs-attribute">id</span> <span class="hljs-comment"># but this field is guaranteed to be fetched regardless</span>
+  }
+}
+
+<span class="hljs-comment"># after: `id` processed at most once</span>
+foo {
+  <span class="hljs-section">bar</span> {
+    <span class="hljs-attribute">id</span>
+  }
+}
+</code></pre>
+<ul>
+<li><code>GenerateRequisiteFieldTransform</code>: This optional, Relay-specific transform inserts <code>id</code> fields for globally identifiable objects and <code>__typename</code> fields wherever the type cannot be statically determined (e.g. for unions).</li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2020-2-3 by Tony</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/next/architecture-overview"><span class="arrow-prev">← </span><span>아키텍쳐 살펴보기</span></a><a class="docs-next button" href="/docs/next/runtime-architecture"><span>런타임 설계</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#data-flow">Data Flow</a></li><li><a href="#data-types-amp-modules">Data Types &amp; Modules</a></li><li><a href="#transforms">Transforms</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/relay.svg" alt="Relay" width="66" height="58"/></a><div><h5>문서</h5><a href="/docs/introduction-to-relay.html">소개</a></div><div><h5>커뮤니티</h5><a href="/users.html">유저 Showcase</a></div><div><h5>더 보기</h5><a href="https://github.com/facebook/relay">GitHub</a><a class="github-button" href="https://github.com/facebook/relay" data-icon="octicon-star" data-count-href="/facebook/relay/stargazers" data-count-api="/repos/facebook/relay#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Facebook Inc. / Translated by Tony (@tonyfromundefined)</section></footer></div></body></html>
