@@ -1,6 +1,6 @@
 ---
 id: relay-debugging
-title: Debugging
+title: 디버깅
 ---
 
 If you're new to Relay, we provide some basic debugging strategies that should serve to help you clarify key concepts as you build your app. Alternatively, Relay provides a couple of tools to inspect the store and its records.

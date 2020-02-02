@@ -15,22 +15,22 @@
         "title": "Installation and Setup"
       },
       "introduction-to-relay": {
-        "title": "Introduction to Relay"
+        "title": "Relay 시작하기"
       },
       "prerequisites": {
         "title": "Prerequisites"
       },
       "quick-start-guide": {
-        "title": "Quick Start Guide"
+        "title": "빠른 시작 가이드"
       },
       "relay-debugging": {
-        "title": "Debugging"
+        "title": "디버깅"
       },
       "fetch-query": {
         "title": "fetchQuery"
       },
       "fragment-container": {
-        "title": "Fragment Container"
+        "title": "Fragment 컨테이너"
       },
       "graphql-in-relay": {
         "title": "GraphQL in Relay"
@@ -96,7 +96,7 @@
         "title": "Installation and Setup"
       },
       "version-1.5.0/version-1.5.0-quick-start-guide": {
-        "title": "Quick Start Guide"
+        "title": "빠른 시작 가이드"
       },
       "version-1.5.0/version-1.5.0-converting-mutations": {
         "title": "Converting Mutations"
@@ -129,7 +129,7 @@
         "title": "Installation and Setup"
       },
       "version-1.6.0/version-1.6.0-quick-start-guide": {
-        "title": "Quick Start Guide"
+        "title": "빠른 시작 가이드"
       },
       "version-1.6.0/version-1.6.0-fetch-query": {
         "title": "fetchQuery"
@@ -234,13 +234,13 @@
         "title": "Installation and Setup"
       },
       "version-classic/version-classic-introduction-to-relay": {
-        "title": "Introduction to Relay"
+        "title": "Relay 시작하기"
       },
       "version-classic/version-classic-prerequisites": {
         "title": "Prerequisites"
       },
       "version-classic/version-classic-quick-start-guide": {
-        "title": "Quick Start Guide"
+        "title": "빠른 시작 가이드"
       },
       "version-classic/version-classic-api-cheatsheet": {
         "title": "API Cheatsheet"
@@ -258,10 +258,10 @@
         "title": "Converting Mutations"
       },
       "version-classic/version-classic-relay-debugging": {
-        "title": "Debugging"
+        "title": "디버깅"
       },
       "version-classic/version-classic-fragment-container": {
-        "title": "Fragment Container"
+        "title": "Fragment 컨테이너"
       },
       "version-classic/version-classic-graphql-in-relay": {
         "title": "GraphQL in Relay"
@@ -336,7 +336,7 @@
         "title": "Installation and Setup"
       },
       "version-v1.7.0/version-v1.7.0-quick-start-guide": {
-        "title": "Quick Start Guide"
+        "title": "빠른 시작 가이드"
       },
       "version-v1.7.0/version-v1.7.0-converting-mutations": {
         "title": "Converting Mutations"
@@ -393,7 +393,7 @@
         "title": "Installation and Setup"
       },
       "version-v2.0.0/version-v2.0.0-relay-debugging": {
-        "title": "Debugging"
+        "title": "디버깅"
       },
       "version-v2.0.0/version-v2.0.0-graphql-in-relay": {
         "title": "GraphQL in Relay"
@@ -411,13 +411,13 @@
         "title": "Installation and Setup"
       },
       "version-v4.0.0/version-v4.0.0-quick-start-guide": {
-        "title": "Quick Start Guide"
+        "title": "빠른 시작 가이드"
       },
       "version-v4.0.0/version-v4.0.0-fetch-query": {
         "title": "fetchQuery"
       },
       "version-v4.0.0/version-v4.0.0-fragment-container": {
-        "title": "Fragment Container"
+        "title": "Fragment 컨테이너"
       },
       "version-v4.0.0/version-v4.0.0-graphql-in-relay": {
         "title": "GraphQL in Relay"
@@ -450,10 +450,10 @@
         "title": "Installation and Setup"
       },
       "version-v5.0.0/version-v5.0.0-quick-start-guide": {
-        "title": "Quick Start Guide"
+        "title": "빠른 시작 가이드"
       },
       "version-v5.0.0/version-v5.0.0-relay-debugging": {
-        "title": "Debugging"
+        "title": "디버깅"
       },
       "version-v5.0.0/version-v5.0.0-pagination-container": {
         "title": "Pagination Container"
@@ -510,7 +510,7 @@
         "title": "Network Layer"
       },
       "version-v7.1.0/version-v7.1.0-quick-start-guide": {
-        "title": "Quick Start Guide"
+        "title": "빠른 시작 가이드"
       },
       "version-v7.1.0/version-v7.1.0-local-state-management": {
         "title": "Local State Management"
@@ -532,7 +532,11 @@
       "🇰🇷한국어 번역": "🇰🇷한국어 번역"
     },
     "categories": {
-      "Introduction": "Introduction",
+      "소개": "소개",
+      "API 레퍼런스": "API 레퍼런스",
+      "가이드": "가이드",
+      "원칙과 설계": "원칙과 설계",
+      "커뮤니티": "커뮤니티",
       "API Reference": "API Reference",
       "Guides": "Guides",
       "Principles & Architecture": "Principles & Architecture",

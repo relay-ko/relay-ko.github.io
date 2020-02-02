@@ -1,6 +1,6 @@
 ---
 id: version-classic-fragment-container
-title: Fragment Container
+title: Fragment 컨테이너
 original_id: fragment-container
 ---
 

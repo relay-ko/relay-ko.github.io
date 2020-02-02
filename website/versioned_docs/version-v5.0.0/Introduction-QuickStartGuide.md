@@ -1,6 +1,6 @@
 ---
 id: version-v5.0.0-quick-start-guide
-title: Quick Start Guide
+title: 빠른 시작 가이드
 original_id: quick-start-guide
 ---
 

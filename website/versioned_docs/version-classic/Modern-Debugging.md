@@ -1,6 +1,6 @@
 ---
 id: version-classic-relay-debugging
-title: Debugging
+title: 디버깅
 original_id: relay-debugging
 ---
 
