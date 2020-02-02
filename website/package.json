@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "docusaurus-build",
-    "deploy": "gh-pages -d build/relay-ko",
+    "deploy": "gh-pages -d build/relay-ko -b master",
     "start": "docusaurus-start",
     "update-specs": "spec-md spec/Connections.md > static/graphql/connections.htm; spec-md spec/Mutations.md > static/graphql/mutations.htm; spec-md spec/ObjectIdentification.md > static/graphql/objectidentification.htm"
   },
