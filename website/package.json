@@ -5,6 +5,7 @@
   "repository": "https://github.com/relay-ko/relay-ko.github.io",
   "license": "MIT",
   "scripts": {
+    "prebuild": "rimraf ./build",
     "build": "docusaurus-build",
     "deploy": "gh-pages -d build/relay-ko -b master",
     "start": "docusaurus-start",
@@ -15,7 +16,8 @@
     "spec-md": "^1.1.1"
   },
   "devDependencies": {
-    "gh-pages": "^2.2.0"
+    "gh-pages": "^2.2.0",
+    "rimraf": "^3.0.1"
   },
   "resolutions": {
     "underscore.string": "^3.3.5"
