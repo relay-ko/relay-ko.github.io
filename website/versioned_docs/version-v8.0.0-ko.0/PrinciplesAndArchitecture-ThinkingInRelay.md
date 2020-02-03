@@ -16,11 +16,7 @@ Relay의 Data-fetching에 대한 접근 방식은 React에서 얻은 저희의 �
 
 두번째로 시도할 수 있는 접근방법은 `render()`를 첫 데이터 요청으로 사용하는 것입니다. 일단 간단하게 어플리케이션을 그린 뒤에, 어떤 데이터가 필요한지 파악하고, 데이터를 요청한 뒤, 다시 그릴 수 있습니다. 이것은 처음에는 좋게 보이나, 문제는 *컴포넌트가 어떤걸 그려야할지가 데이터를 통해서만 알 수 있다는 것입니다!* 다른 말로 이야기하자면, 이것은 데이터 요청을 여러번에 나눠서 실행하게 됩니다: 첫번째로 그려질때는 루트를 보고 데이터를 가져오고, 그리고 그 이후에 자식은 뭐가 필요한지를 파악한 후에 데이터를 가져오게 됩니다. 이렇게 컴포넌트 트리의 맨 아래까지 내려가게 됩니다. 만약 각 단계마다 네트워크 요청이 일어나게 된다면, 렌더링이 느려지고, 연속적인 데이터 왕복이 필요하게 됩니다. 그래서 이 문제를 해결하기 위해 우리는 전체적인 데이터 요구를 한번에, 정적으로 파악할 수 있는 방법이 필요합니다.
 
-This is where GraphQL comes into play.
-
-여기서 GraphQL의 마법이 시작됩니다.
-
-Components specify one or multiple GraphQL fragments for some of their props describing their data requirements.
+This is where GraphQL comes into play. Components specify one or multiple GraphQL fragments for some of their props describing their data requirements.
 
 Each GraphQL fragment has a unique name within an application which allows us to determine the query needed to fetch the full query tree in a build step and load all the required data in a single network request efficiently at runtime.
 
