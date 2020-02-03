@@ -1,22 +1,28 @@
 ---
-id: version-v1.7.0-thinking-in-relay
-title: Thinking In Relay
+id: version-v8.0.0-ko.0-thinking-in-relay
+title: Thinking in Relay
 original_id: thinking-in-relay
 ---
 
-Relay's approach to data-fetching is heavily inspired by our experience with React. In particular, React breaks complex interfaces into reusable **components**, allowing developers to reason about discrete units of an application in isolation, and reducing the coupling between disparate parts of an application. Even more important is that these components are **declarative**: they allow developers to specify *what* the UI should look like for a given state, and not have to worry about *how* to show that UI. Unlike previous approaches that used imperative commands to manipulate native views (e.g. the DOM), React uses a UI description to automatically determine the necessary commands.
+Relay의 Data-fetching에 대한 접근 방식은 React에서 얻은 저희의 경험으로부터 많은 영감을 받았습니다. 일반적으로 React는 복잡한 인터페이스를 재사용가능한 컴포넌트로 쪼갭니다. 이를 통해 개발자들은 어플리케이션을 분리할 구체적인 단위에 대해 생각할 수 있게 되고, 어플리케이션 내 다른 역할을 하는 부분들 사이의 연관관계를 줄일 수 있습니다. 그리고 무엇보다 중요한 부분은 바로 **선언적**이라는 것입니다: 선언적으로 UI를 그리는 방법은 개발자로 하여금 *어떻게* UI를 그릴지에 대한 염려없이, 주어진 State로 *무엇을* 그릴지만 고민하게 만들어줍니다. 절차적 프로그래밍으로 네이티브 뷰(예: DOM)를 조작하는 이전의 접근과 다르게, React는 UI 명세를 가지고 자동으로 꼭 필요한 행동만 하게됩니다.
 
-Let's look at some product use-cases to understand how we incorporated these ideas into Relay. We'll assume a basic familiarity with React.
+자 이제, 어떻게 이 아이디어를 Relay에 어떻게 적용했는지 몇가지 Product Use-case들을 통해 살펴봅시다. (React에 이미 익숙하시다고 가정한 뒤 설명하겠습니다.)
 
-## Fetching Data For a View
+## 뷰를 위한 데이터를 가져오는 것
 
-In our experience, the overwhelming majority of products want one specific behavior: fetch *all* the data for a view hierarchy while displaying a loading indicator, and then render the *entire* view once the data is ready.
+우리의 경험에 따르면, 대부분의 어플리케이션이 원하는 구동 방식은 로딩 인디케이터가 보여질때 View Hierarchy내에서 필요한 데이터를 한번에 모두 Fetch하고 데이터가 준비되면 *전체 뷰*를 한번에 그리는 것입니다. 
 
-One solution is to have a root component fetch the data for all its children. However, this would introduce coupling: every change to a component would require changing *any* root component that might render it, and often some components between it and the root. This coupling could mean a greater chance for bugs and slow the pace of development. Ultimately, this approach doesn't take advantage of React's component model. The natural place for specifying data-dependencies was in *components*.
+이를 위한 첫번째 솔루션은 루트 컴포넌트에서 자식에게 필요한 모든 데이터를 가져오는 것입니다. 하지만 이것은 Coupling을 발생시킵니다: 하위 컴포넌트에서 변경이 발생할때마다 루트 컴포넌트가 변경 될 필요가 생깁니다. 이러한 Coupling은 버그를 만날 확률을 높이고 개발 속도를 느리게 만듭니다. 궁극적으로는, 이러한 접근방식은 React의 컴포넌트 모델의 장점을 얻을수 없게 만듭니다. 필요한 데이터를 정의하는 가장 자연스러운 부분은 루트가 아닌 각 컴포넌트 내부일것입니다.
 
-The next logical approach is to use `render()` as the means of initiating data-fetching. We could simply render the application once, see what data it needed, fetch that data, and render again. This sounds great, but the problem is that *components use data to figure out what to render!* In other words, this would force data-fetching to be staged: first render the root and see what data it needs, then render its children and see what they need, all the way down the tree. If each stage incurs network request, rendering would require slow, serial roundtrips. We needed a way to determine all the data needs up-front or *statically*.
+두번째로 시도할 수 있는 접근방법은 `render()`를 첫 데이터 요청으로 사용하는 것입니다. 일단 간단하게 어플리케이션을 그린 뒤에, 어떤 데이터가 필요한지 파악하고, 데이터를 요청한 뒤, 다시 그릴 수 있습니다. 이것은 처음에는 좋게 보이나, 문제는 *컴포넌트가 어떤걸 그려야할지가 데이터를 통해서만 알 수 있다는 것입니다!* 다른 말로 이야기하자면, 이것은 데이터 요청을 여러번에 나눠서 실행하게 됩니다: 첫번째로 그려질때는 루트를 보고 데이터를 가져오고, 그리고 그 이후에 자식은 뭐가 필요한지를 파악한 후에 데이터를 가져오게 됩니다. 이렇게 컴포넌트 트리의 맨 아래까지 내려가게 됩니다. 만약 각 단계마다 네트워크 요청이 일어나게 된다면, 렌더링이 느려지고, 연속적인 데이터 왕복이 필요하게 됩니다. 그래서 이 문제를 해결하기 위해 우리는 전체적인 데이터 요구를 한번에, 정적으로 파악할 수 있는 방법이 필요합니다.
 
-This is where GraphQL comes into play. Components specify one or multiple GraphQL fragments for some of their props describing their data requirements. Each GraphQL fragment has a unique name within an application which allows us to determine the query needed to fetch the full query tree in a build step and load all the required data in a single network request efficiently at runtime.
+This is where GraphQL comes into play.
+
+여기서 GraphQL의 마법이 시작됩니다.
+
+Components specify one or multiple GraphQL fragments for some of their props describing their data requirements.
+
+Each GraphQL fragment has a unique name within an application which allows us to determine the query needed to fetch the full query tree in a build step and load all the required data in a single network request efficiently at runtime.
 
 ## Data Components aka Containers
 
