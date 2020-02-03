@@ -1,6 +1,6 @@
 ---
 id: version-classic-thinking-in-relay
-title: Thinking in Relay
+title: Thinking In Relay
 original_id: thinking-in-relay
 ---
 

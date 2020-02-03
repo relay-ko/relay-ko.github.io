@@ -1,6 +1,6 @@
 ---
 id: version-classic-graphql-in-relay
-title: Relay에서의 GraphQL
+title: GraphQL in Relay
 original_id: graphql-in-relay
 ---
 

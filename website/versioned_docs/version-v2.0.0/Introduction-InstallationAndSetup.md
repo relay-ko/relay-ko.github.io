@@ -1,6 +1,6 @@
 ---
 id: version-v2.0.0-installation-and-setup
-title: 설치 및 설정
+title: Installation and Setup
 original_id: installation-and-setup
 ---
 

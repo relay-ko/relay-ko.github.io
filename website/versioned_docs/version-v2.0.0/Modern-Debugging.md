@@ -1,6 +1,6 @@
 ---
 id: version-v2.0.0-relay-debugging
-title: 디버깅
+title: Debugging
 original_id: relay-debugging
 ---
 

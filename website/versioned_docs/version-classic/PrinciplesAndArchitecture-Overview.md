@@ -1,6 +1,6 @@
 ---
 id: version-classic-architecture-overview
-title: 아키텍쳐 살펴보기
+title: Architecture Overview
 original_id: architecture-overview
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: quick-start-guide
-title: 빠른 시작 가이드
+title: Quick Start Guide
 ---
 
 In this guide we are going to give a brief overview of how Relay works and how to use it, using as reference an example todo list app. For more thorough documentation, check out our Guides and API sections.

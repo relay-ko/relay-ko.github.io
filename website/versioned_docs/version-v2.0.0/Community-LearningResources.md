@@ -1,6 +1,6 @@
 ---
 id: version-v2.0.0-community-learning-resources
-title: 커뮤니티 학습 자료
+title: Community Learning Resources
 original_id: community-learning-resources
 ---
 

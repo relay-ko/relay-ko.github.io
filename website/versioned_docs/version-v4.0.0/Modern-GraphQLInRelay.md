@@ -1,6 +1,6 @@
 ---
 id: version-v4.0.0-graphql-in-relay
-title: Relay에서의 GraphQL
+title: GraphQL in Relay
 original_id: graphql-in-relay
 ---
 

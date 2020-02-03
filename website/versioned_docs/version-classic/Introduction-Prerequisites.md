@@ -1,6 +1,6 @@
 ---
 id: version-classic-prerequisites
-title: 사전 준비사항
+title: Prerequisites
 original_id: prerequisites
 ---
 

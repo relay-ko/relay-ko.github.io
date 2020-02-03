@@ -1,6 +1,6 @@
 ---
 id: version-classic-compiler-architecture
-title: 컴파일러 설계
+title: Compiler Architecture
 original_id: compiler-architecture
 ---
 

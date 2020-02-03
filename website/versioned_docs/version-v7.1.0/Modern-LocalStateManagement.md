@@ -1,6 +1,6 @@
 ---
 id: version-v7.1.0-local-state-management
-title: 로컬 상태 관리
+title: Local State Management
 original_id: local-state-management
 ---
 

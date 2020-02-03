@@ -1,6 +1,6 @@
 ---
 id: architecture-overview
-title: 아키텍쳐 살펴보기
+title: Architecture Overview
 ---
 
 This document, together with [Runtime Architecture](runtime-architecture.html) and [Compiler Architecture](compiler-architecture.html), describes the high-level architecture of Relay "Modern". The intended audience includes developers interested in contributing to Relay, developers hoping to utilize the building blocks of Relay to create higher-level APIs, and anyone interested in understanding more about Relay internals. For developers wanting to learn more about *using* Relay to build products, the other sections might be more helpful.

@@ -1,6 +1,6 @@
 ---
 id: graphql-server-specification
-title: GraphQL 서버 명세
+title: GraphQL Server Specification
 ---
 
 The goal of this document is to specify the assumptions that Relay makes about a GraphQL server and demonstrate them through an example GraphQL schema.

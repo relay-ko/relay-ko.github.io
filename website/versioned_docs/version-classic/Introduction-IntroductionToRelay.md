@@ -1,6 +1,6 @@
 ---
 id: version-classic-introduction-to-relay
-title: Relay 시작하기
+title: Introduction to Relay
 original_id: introduction-to-relay
 ---
 

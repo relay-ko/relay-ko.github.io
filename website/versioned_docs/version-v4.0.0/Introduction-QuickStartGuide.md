@@ -1,6 +1,6 @@
 ---
 id: version-v4.0.0-quick-start-guide
-title: 빠른 시작 가이드
+title: Quick Start Guide
 original_id: quick-start-guide
 ---
 
