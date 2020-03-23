@@ -3,7 +3,7 @@ id: community-learning-resources
 title: Community Learning Resources
 ---
 
-## Relay 예제 프로젝트들
+## Relay 예제 프로젝트
 
 아래 프로젝트들은 실제 여러분의 서비스에서 릴레이를 사용할 수 있는 예제입니다. 예제 중 일부는 튜토리얼 영상을 포함하고 있습니다.
 

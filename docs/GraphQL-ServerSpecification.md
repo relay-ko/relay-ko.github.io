@@ -3,24 +3,24 @@ id: graphql-server-specification
 title: GraphQL Server Specification
 ---
 
-The goal of this document is to specify the assumptions that Relay makes about a GraphQL server and demonstrate them through an example GraphQL schema.
+이 문서의 목표는 릴레이로 GraphQL 서버를 구성했다고 가정하고, GraphQL 스키마 예제를 통해 릴레이의 기능들을 설명하는 것입니다.
 
-Table of Contents:
+목차:
 
-- [Preface](#preface)
-- [Schema](#schema)
-- [Object Identification](#object-identification)
-- [Connections](#connections)
-- [Mutations](#mutations)
-- [Further Reading](#further-reading)
+- [머릿말](#머릿말)
+- [스키마](#스키마)
+- [객체 식별](#객체-식별)
+- [연결자](#연결자)
+- [뮤테이션](#뮤테이션)
+- [추가 자료](#추가-자료)
 
-## Preface
+## 머릿말
 
-The three core assumptions that Relay makes about a GraphQL server are that it provides:
+릴레이가 GraphQL 서버에서 수행하는 3가지 핵심은 아래와 같습니다.
 
-1. A mechanism for refetching an object.
-2. A description of how to page through connections.
-3. Structure around mutations to make them predictable.
+1. 객체를 다시 가져 오는 메커니즘.
+2. 연결을 통해 페이징하는 방법에 대한 설명.
+3. 뮤테이션(Mutations)을 예측할 수 있는 구조.
 
 This example demonstrates all three of these assumptions. This example is not comprehensive, but it is designed to quickly introduce these core assumptions, to provide some context before diving into the more detailed specification of the library.
 
@@ -30,7 +30,7 @@ It is assumed that the reader is already familiar with [GraphQL](http://graphql.
 
 It is also assumed that the reader is already familiar with [Star Wars](https://en.wikipedia.org/wiki/Star_Wars); if not, the 1977 version of Star Wars is a good place to start, though the 1997 Special Edition will serve for the purposes of this document.
 
-## Schema
+## 스키마
 
 The schema described below will be used to demonstrate the functionality that a GraphQL server used by Relay should implement. The two core types are a faction and a ship in the Star Wars universe, where a faction has many ships associated with it. The schema below is the output of the GraphQL.js [`schemaPrinter`](https://github.com/graphql/graphql-js/blob/master/src/utilities/schemaPrinter.js).
 
@@ -88,7 +88,7 @@ type Mutation {
 }
 ```
 
-## Object Identification
+## 객체 식별
 
 Both `Faction` and `Ship` have identifiers that we can use to refetch them. We expose this capability to Relay through the `Node` interface and the `node` field on the root query type.
 
@@ -192,7 +192,7 @@ The IDs we got back were base64 strings. IDs are designed to be opaque (the only
 
 Complete details on how the server should behave are available in the [GraphQL Object Identification](https://graphql.org/learn/global-object-identification/) best practices guide in the GraphQL site.
 
-## Connections
+## 연결자
 
 A faction has many ships in the Star Wars universe. Relay contains functionality to make manipulating one-to-many relationships easy, using a standardized way of expressing these one-to-many relationships. This standard connection model offers ways of slicing and paginating through the connection.
 
@@ -443,7 +443,7 @@ Relay uses all of this functionality to build out abstractions around connection
 
 Complete details on how the server should behave are available in the [GraphQL Cursor Connections](/graphql/connections.htm) spec.
 
-## Mutations
+## 뮤테이션
 
 Relay uses a common pattern for mutations, where there are root fields on the mutation type with a single argument, `input`, and where the input and output both contain a client mutation identifier used to reconcile requests and responses.
 
@@ -506,7 +506,7 @@ and we'll get this result:
 }
 ```
 
-## Further Reading
+## 추가 자료
 
 This concludes the overview of the GraphQL Server Specifications. For the detailed requirements of a Relay-compliant GraphQL server, a more formal description of the [Relay cursor connection](/graphql/connections.htm) model, the [GraphQL global object identification](https://graphql.org/learn/global-object-identification/) model are all available.
 
