@@ -22,14 +22,13 @@ title: GraphQL Server Specification
 2. 연결을 통해 페이징하는 방법에 대한 설명.
 3. 뮤테이션(Mutations)을 예측할 수 있는 구조.
 
-This example demonstrates all three of these assumptions. This example is not comprehensive, but it is designed to quickly introduce these core assumptions, to provide some context before diving into the more detailed specification of the library.
+이 문서는 릴레이에 대한 자세한 설명을 다루지는 않지만 릴레이를 자세히 살펴보기 전에 릴레이의 핵심 내용을 빠르게 소개하기 위해 작성되었습니다. 아래에서는 앞서 설명한 세 가지 핵심 요소들을 보여줍니다.
 
-The premise of the example is that we want to use GraphQL to query for information about ships and factions in the original Star Wars trilogy.
+예제에서는 GraphQL을 사용하여 오리지널 스타워즈 3부작의 배(Ships)와 진영(Factions)에 대한 정보를 쿼리하는 전제로 설명합니다.
 
-It is assumed that the reader is already familiar with [GraphQL](http://graphql.org/); if not, the README for [GraphQL.js](https://github.com/graphql/graphql-js) is a good place to start.
+이 문서를 읽는 여러분은 이미 [GraphQL] (http://graphql.org/)에 익숙하다고 가정합니다. 만약 아직 GraphQL에 익숙하지 않다면 [GraphQL.js] (https://github.com/graphql/graphql-js)의 README를 먼저 읽으시는 것을 권장합니다.
 
-It is also assumed that the reader is already familiar with [Star Wars](https://en.wikipedia.org/wiki/Star_Wars); if not, the 1977 version of Star Wars is a good place to start, though the 1997 Special Edition will serve for the purposes of this document.
-
+또한 이미 [스타 워즈](https://en.wikipedia.org/wiki/Star_Wars)에 익숙하다고 가정합니다. 만약 스타워즈를 보시지 않았다면, 원작인 1977 버전의 스타워즈가 최고라고 할 수 있겠지만, 여기서는 설명을 위해 스타 워즈 - 스페셜 에디션으로 설명합니다.
 ## 스키마
 
 The schema described below will be used to demonstrate the functionality that a GraphQL server used by Relay should implement. The two core types are a faction and a ship in the Star Wars universe, where a faction has many ships associated with it. The schema below is the output of the GraphQL.js [`schemaPrinter`](https://github.com/graphql/graphql-js/blob/master/src/utilities/schemaPrinter.js).
