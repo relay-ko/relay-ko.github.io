@@ -10,7 +10,7 @@ title: GraphQL Server Specification
 - [머릿말](#머릿말)
 - [스키마](#스키마)
 - [객체 식별](#객체-식별)
-- [연결자](#연결자)
+- [커넥션](#커넥션)
 - [뮤테이션](#뮤테이션)
 - [추가 자료](#추가-자료)
 
@@ -192,7 +192,7 @@ The IDs we got back were base64 strings. IDs are designed to be opaque (the only
 
 Complete details on how the server should behave are available in the [GraphQL Object Identification](https://graphql.org/learn/global-object-identification/) best practices guide in the GraphQL site.
 
-## 연결자
+## 커넥션
 
 A faction has many ships in the Star Wars universe. Relay contains functionality to make manipulating one-to-many relationships easy, using a standardized way of expressing these one-to-many relationships. This standard connection model offers ways of slicing and paginating through the connection.
 
