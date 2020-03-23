@@ -26,7 +26,7 @@ title: GraphQL Server Specification
 
 예제에서는 GraphQL을 사용하여 오리지널 스타워즈 3부작의 배(Ships)와 진영(Factions)에 대한 정보를 쿼리하는 전제로 설명합니다.
 
-이 문서를 읽는 여러분은 이미 [GraphQL] (http://graphql.org/)에 익숙하다고 가정합니다. 만약 아직 GraphQL에 익숙하지 않다면 [GraphQL.js] (https://github.com/graphql/graphql-js)의 README를 먼저 읽으시는 것을 권장합니다.
+이 문서를 읽는 여러분은 이미 [GraphQL](http://graphql.org/)에 익숙하다고 가정합니다. 만약 아직 GraphQL에 익숙하지 않다면 [GraphQL.js](https://github.com/graphql/graphql-js)의 README를 먼저 읽으시는 것을 권장합니다.
 
 또한 이미 [스타 워즈](https://en.wikipedia.org/wiki/Star_Wars)에 익숙하다고 가정합니다. 만약 스타워즈를 보시지 않았다면, 원작인 1977 버전의 스타워즈가 최고라고 할 수 있겠지만, 여기서는 설명을 위해 스타 워즈 - 스페셜 에디션으로 설명합니다.
 ## 스키마
