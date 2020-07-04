@@ -14,11 +14,11 @@ title: Community Learning Resources
 
 아래에서는 릴레이 커뮤니티에서 작성된 기사를 살펴보실 수 있습니다. 이 뉴스들은 여러분이 실무에 필요한 기본적인 주제들을 다룹니다.
 
-- [What is a fragment? Basic explanation of what is a fragment and what it is used for](https://medium.com/@sibelius/relay-modern-what-is-a-fragment-c70f164c2469) (by @sibelius)
-- [Relay anti-patterns. What you should avoid doing when using Relay concepts](https://medium.com/entria/relay-apollo-anti-pattern-d9f4dea47738) (by Entria)
-- [Insights of how Relay Modern has improved a lot since Relay Classic](https://medium.com/entria/relay-is-just-getting-better-54112ffc1a9e) (by Entria)
-- [How to use @argumentsDefinitions to define local variables to your fragments](https://medium.com/entria/relay-modern-argumentdefinitions-d53769dbb95d) (by Entria)
-- [How to paginate using a Refetch Container. You can use a refetch container to paginate as well, just use renderVariables correctly](https://medium.com/entria/relay-modern-pagination-using-refetch-container-editing-a07c6b33ae4e) (by Entria)
+- [프래그먼트(Fragment)는 무엇인가요? 프래그먼트가 무엇이고 어떤 목적으로 사용되는지 알아봅시다](https://medium.com/@sibelius/relay-modern-what-is-a-fragment-c70f164c2469) (by @sibelius)
+- [릴레이(Relay) 안티 패턴. 릴레이 컨셉을 사용할 때 주의 해야할 사항](https://medium.com/entria/relay-apollo-anti-pattern-d9f4dea47738) (by Entria)
+- [릴레이 클래식(Relay Classic) 이후 릴레이 모던에서 이루어진 많은 발전들의 인사이트](https://medium.com/entria/relay-is-just-getting-better-54112ffc1a9e) (by Entria)
+- [@argumentsDefinitions를 사용하여 프래그먼트에 지역 변수를 정의하는 방법](https://medium.com/entria/relay-modern-argumentdefinitions-d53769dbb95d) (by Entria)
+- [refetch 컨테이너를 사용하여 페이지네이션을 처리하는 방법. renderVariables 올바르게 사용하기만 한다면 Refetch container를 사용하여 페이지네이션을 할 수 있습니다.](https://medium.com/entria/relay-modern-pagination-using-refetch-container-editing-a07c6b33ae4e) (by Entria)
 
 ## 릴레이 스토어에 대하여
 
