@@ -2,7 +2,7 @@
 <!-- Built with spec-md https://spec-md.com -->
 <html>
 <head><meta charset="utf-8">
-<title>GraphQL Global Object Identification Specification</title>
+<title>GraphQL 전역 오브젝트 식별 사양</title>
 <style>body {
   color: #333333;
   font: 13pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
@@ -870,11 +870,11 @@ pre[class*="language-"] {
 </head>
 <body><article>
 <header>
-<h1>GraphQL Global Object Identification Specification</h1>
+<h1>GraphQL 전역 오브젝트 식별 사양</h1>
 <section id="intro">
-<p>To provide options for GraphQL clients to elegantly handle for caching and data refetching GraphQL servers need to expose object identifiers in a standardized way. In the query, the schema should provide a standard mechanism for asking for an object by ID. In the response, the schema provides a standard way of providing these IDs.</p>
-<p>We refer to objects with identifiers as &ldquo;nodes&rdquo;.</p>
-<p>An example of both of those is the following query:</p>
+<p>GraphQL 클라이언트에게 캐싱과 data refetching을 우아하게 처리할 수 있는 옵션을 제공하려면 GraphQL 서버는 표준화된 방법으로 객체 식별자들을 보여줄 수 있어야 합니다. 쿼리에선 스키마는 ID로 오브젝트를 요청하는 표준 메커니즘을 제공해야 합니다. 응답에선 스키마는 이 ID들을 제공하는 표준 방법 제공해야 합니다.</p>
+<p>우리는 식별자를 가진 오브젝트를 &ldquo;nodes&rdquo;이라고 부릅니다.</p>
+<p>이 두 예제는 다음 쿼리입니다.</p>
 <pre><code><span class="token punctuation">{</span>
   node<span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token string">"4"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     id
@@ -884,52 +884,52 @@ pre[class*="language-"] {
   <span class="token punctuation">}</span>
 </code></pre>
 <ul>
-<li>Refetching the object is done with the <code>node</code> field on the root query object.</li>
-<li>The ID to be used for refetching is provided in an <code>id</code> field on the result.</li>
+<li>오브젝트 리페칭은 루트 쿼리 오브젝트의 필드에 있는 <code>node</code>의 필드로 끝납니다.</li>
+<li>리페칭에 사용될 ID는 결과의 <code>id</code>필드에 제공됩니다.</li>
 </ul>
-<p>This section of the spec describes the formal requirements around object refetching.</p>
+<p>이 섹션에선 오브젝트 리페칭과 관련된 공식 요구사항에 대해 설명합니다</p>
 </section>
 <nav class="spec-toc">
 <div class="title">Contents</div>
 <ol>
-<li><a href="#sec-Reserved-Types"><span class="spec-secid">1</span>Reserved Types</a></li>
-<li><a href="#sec-Node-Interface"><span class="spec-secid">2</span>Node Interface</a>
+<li><a href="#sec-undefined.-"><span class="spec-secid">1</span>예약된 타입</a></li>
+<li><a href="#sec-undefined.Node-"><span class="spec-secid">2</span>Node 인터페이스</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_2" /><label for="_toggle_2"></label>
 <ol>
-<li><a href="#sec-Node-Interface.Introspection"><span class="spec-secid">2.1</span>Introspection</a></li>
+<li><a href="#sec-undefined.Node-.-"><span class="spec-secid">2.1</span>스키마 확인</a></li>
 </ol>
 </li>
-<li><a href="#sec-Node-root-field"><span class="spec-secid">3</span>Node root field</a>
+<li><a href="#sec-undefined.Node-"><span class="spec-secid">3</span>Node 루트 필드</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_3" /><label for="_toggle_3"></label>
 <ol>
-<li><a href="#sec-Node-root-field.Introspection"><span class="spec-secid">3.1</span>Introspection</a></li>
+<li><a href="#sec-undefined.Node-.-"><span class="spec-secid">3.1</span>스키마 확인</a></li>
 </ol>
 </li>
-<li><a href="#sec-Field-stability"><span class="spec-secid">4</span>Field stability</a></li>
-<li><a href="#sec-Plural-identifying-root-fields"><span class="spec-secid">5</span>Plural identifying root fields</a>
+<li><a href="#sec-undefined.-"><span class="spec-secid">4</span>필드 안정성</a></li>
+<li><a href="#sec-undefined.-"><span class="spec-secid">5</span>복수 식별 루트 필드</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_5" /><label for="_toggle_5"></label>
 <ol>
-<li><a href="#sec-Fields"><span class="spec-secid">5.1</span>Fields</a></li>
+<li><a href="#sec-undefined.-.-"><span class="spec-secid">5.1</span>필드</a></li>
 </ol>
 </li>
 </ol>
 </nav>
 </header>
-<section id="sec-Reserved-Types" secid="1">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-Reserved-Types">1</a></span>Reserved Types</h2>
-<p>A GraphQL server compatible with this spec must reserve certain types and type names to support the consistent object identification model. In particular, this spec creates guidelines for the following types:</p>
+<section id="sec-undefined.-" secid="1">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-">1</a></span>예약된 타입</h2>
+<p>일관된 오브젝트 식별 모델을 지원하기 위해 이 스펙과 호환이 되는 GraphQL 서버는 특정 타입과 특정 이름을 반드시 예약해야 합니다. 특히, 이 스펙은 아래의 타입에 대한 가이드라인을 만듭니다:</p>
 <ul>
-<li>An interface named <code>Node</code>.</li>
-<li>The <code>node</code> field on the root query type.</li>
+<li><code>Node</code> 라는 이름의 인터페이스.</li>
+<li>루트 쿼리 타입의 필드인 <code>node</code> 필드.</li>
 </ul>
 </section>
-<section id="sec-Node-Interface" secid="2">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-Node-Interface">2</a></span>Node Interface</h2>
-<p>The server must provide an interface called <code>Node</code>. That interface must include exactly one field, called <code>id</code> that returns a non&#8208;null <code>ID</code>.</p>
-<p>This <code>id</code> should be a globally unique identifier for this object, and given just this <code>id</code>, the server should be able to refetch the object.</p>
-<section id="sec-Node-Interface.Introspection" secid="2.1">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Node-Interface.Introspection">2.1</a></span>Introspection</h3>
-<p>A server that correctly implements the above interface will accept the following introspection query, and return the provided response:</p>
+<section id="sec-undefined.Node-" secid="2">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-undefined.Node-">2</a></span>Node 인터페이스</h2>
+<p>서버는 <code>Node</code>라 불리는 인터페이스를 반드시 제공해야 합니다. 이 인터페이스에는 null이 아닌 <code>id</code>라는 이름의 <code>ID</code> 필드를 오직 하나만 포함하고 있어야 합니다. </p>
+<p>이 <code>id</code>는 오브젝트에서 반드시 전역적으로 유니크한 식별자여야 하고 이 <code>id</code>가 주어진다면, 서버는 오브젝트를 리페칭 할 수 있어야 합니다.</p>
+<section id="sec-undefined.Node-.-" secid="2.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.Node-.-">2.1</a></span>스키마 확인</h3>
+<p>아래의 인터페이스를 정확하게 구현한 서버는 아래의 스키마 확인 쿼리를 받아들일 것이고, 제공된 응답을 반환합니다</p>
 <pre><code><span class="token punctuation">{</span>
   __type<span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token string">"Node"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     name
@@ -947,7 +947,7 @@ pre[class*="language-"] {
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>yields</p>
+<p>결과</p>
 <pre><code><span class="token punctuation">{</span>
   <span class="token property">"__type"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Node"</span><span class="token punctuation">,</span>
@@ -969,14 +969,14 @@ pre[class*="language-"] {
 </code></pre>
 </section>
 </section>
-<section id="sec-Node-root-field" secid="3">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-Node-root-field">3</a></span>Node root field</h2>
-<p>The server must provide a root field called <code>node</code> that returns the <code>Node</code> interface. This root field must take exactly one argument, a non&#8208;null ID named <code>id</code>.</p>
-<p>If a query returns an object that implements <code>Node</code>, then this root field should refetch the identical object when value returned by the server in the <code>Node</code>&lsquo;s <code>id</code> field is passed as the <code>id</code> parameter to the <code>node</code> root field.</p>
-<p>The server must make a best effort to fetch this data, but it may not always be possible; for example, the server may return a <code>User</code> with a valid <code>id</code>, but when the request is made to refetch that user with the <code>node</code> root field, the user&rsquo;s database may be unavailable, or the user may have deleted their account. In this case, the result of querying this field should be <code>null</code>.</p>
-<section id="sec-Node-root-field.Introspection" secid="3.1">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Node-root-field.Introspection">3.1</a></span>Introspection</h3>
-<p>A server that correctly implements the above requirement will accept the following introspection query, and return a response that contains the provided response.</p>
+<section id="sec-undefined.Node-" secid="3">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-undefined.Node-">3</a></span>Node 루트 필드</h2>
+<p>서버는 <code>Node</code> 인터페이스를 리턴하는 <code>node</code> 라 불리는 루트 필드를 반드시 제공해야 합니다. 이 루트 필드는 null이 아닌 ID 타입의 <code>id</code>라는 이름의 인자를 반드시 하나만 가져야 합니다.</p>
+<p>만약 쿼리가 <code>Node</code>를 구현한 오브젝트를 리턴한다면, <code>Node</code>의 <code>id</code> 필드에 서버로부터 리턴된 값이 <code>node</code> 루트 필드의 <code>id</code> 파라미터로 들어갈 때 이 루트 필드는 동일한 오브젝트를 리페칭 해야 합니다.</p>
+<p>서버는 반드시 이 데이터를 가져오기 위한 최선의 노력을 다해야 합니다만, 이는 항상 가능하지 않습니다. 예를 들어, 서버가 유효한 <code>id</code>를 가진 <code>User</code>를 리턴할 수 있지만, 요청이 <code>node</code>의 루트 필드와 함께 해당 유저를 리페칭하도록 만들어졌을 때, 그 유저의 데이터베이스는 아마 사용할 수 없거나, 유저가 계정에서 삭제했을 수 있습니다. 이 경우엔, 이 필드의 질의의 결과는 <code>null</code>이어야 합니다.</p>
+<section id="sec-undefined.Node-.-" secid="3.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.Node-.-">3.1</a></span>스키마 확인</h3>
+<p>정확하게 위의 요구사항을 구현한 서버는 다음의 스키마 확인 쿼리를 받아들이고, 제공된 응답을 포함하는 응답을 리턴합니다.</p>
 <pre><code><span class="token punctuation">{</span>
   __schema <span class="token punctuation">{</span>
     queryType <span class="token punctuation">{</span>
@@ -1001,7 +1001,7 @@ pre[class*="language-"] {
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>yields</p>
+<p>결과</p>
 <pre><code><span class="token punctuation">{</span>
   <span class="token property">"__schema"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"queryType"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1033,19 +1033,19 @@ pre[class*="language-"] {
 </code></pre>
 </section>
 </section>
-<section id="sec-Field-stability" secid="4">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-Field-stability">4</a></span>Field stability</h2>
-<p>If two objects appear in a query, both implementing <code>Node</code> with identical IDs, then the two objects must be equal.</p>
-<p>For the purposes of this definition, object equality is defined as follows:</p>
+<section id="sec-undefined.-" secid="4">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-">4</a></span>필드 안정성</h2>
+<p>두 개의 오브젝트가 쿼리에 있고, 둘 다 동일한 ID로 <code>Node</code>를 구현했다면, 그 두 오브젝트는 반드시 같아야 합니다.</p>
+<p>이 정의의 목적상, 오브젝트 동일성은 다음과 같이 정의됩니다:</p>
 <ul>
-<li>If a field is queried on both objects, the result of querying that field on the first object must be equal to the result of querying that field on the second object.<ul>
-<li>If the field returns a scalar, equality is defined as is appropriate for that scalar.</li>
-<li>If the field returns an enum, equality is defined as both fields returning the same enum value.</li>
-<li>If the field returns an object, equality is defined recursively as per the above.</li>
+<li>만약 두 오브젝트에서 하나의 필드가 질의되는 경우, 첫 번째 오브젝트에서 필드를 질의한 결과는 두 번째 오브젝트에서 질의한 필드의 결과와 반드시 같아야 합니다.<ul>
+<li>필드가 스칼라 타입을 리턴한다면, 동일성은 해당 스칼라 타입에 적합한 것으로 정의됩니다.</li>
+<li>enum 타입을 리턴한다면, 동일성은 두 필드 모두 같은 enum 타입 값을 리턴하는 것으로 정의됩니다.</li>
+<li>오브젝트를 리턴한다면, 동일성은 위와 같이 재귀적으로 정의됩니다.</li>
 </ul>
 </li>
 </ul>
-<p>For example:</p>
+<p>예를 들어, 아래처럼 질의한다면:</p>
 <pre><code><span class="token punctuation">{</span>
   <span class="token attr-name">fourNode</span><span class="token punctuation">:</span> node<span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token string">"4"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     id
@@ -1069,7 +1069,7 @@ pre[class*="language-"] {
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>might return:</p>
+<p>아래처럼 리턴할 수 있습니다.</p>
 <pre><code><span class="token punctuation">{</span>
   <span class="token property">"fourNode"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"4"</span><span class="token punctuation">,</span>
@@ -1089,32 +1089,32 @@ pre[class*="language-"] {
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Because <code>fourNode.id</code> and <code>fiveNode.userWithIdOneLess.id</code> are the same, we are guaranteed by the conditions above that <code>fourNode.name</code> must be the same as <code>fiveNode.userWithIdOneLess.name</code>, and indeed it is.</p>
+<p><code>fourNode.id</code> 와 <code>fiveNode.userWithIdOneLess.id</code>는 같기 때문에, <code>fourNode.name</code>은 <code>fiveNode.userWithIdOneLess.name</code> 과 반드시 동일해야 한다는 위 조건은 보장되고, 실제로도 그렇습니다.</p>
 </section>
-<section id="sec-Plural-identifying-root-fields" secid="5">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-Plural-identifying-root-fields">5</a></span>Plural identifying root fields</h2>
-<p>Imagine a root field named <code>username</code>, that takes a user&rsquo;s username and returns the corresponding user:</p>
+<section id="sec-undefined.-" secid="5">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-">5</a></span>복수 식별 루트 필드</h2>
+<p>한 루트 필드의 이름이 <code>username</code>이고, 이는 사용자의 사용자 이름과 해당되는 사용자를 리턴하는 것을 가정해 봅시다.</p>
 <pre><code><span class="token punctuation">{</span>
   username<span class="token punctuation">(</span><span class="token attr-name">username</span><span class="token punctuation">:</span> <span class="token string">"zuck"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     id
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>might return:</p>
+<p>아래처럼 리턴할 수 있습니다.</p>
 <pre><code><span class="token punctuation">{</span>
   <span class="token property">"username"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"4"</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Clearly, we can link up the object in the response, the user with ID 4, with the request, identifying the object with username &ldquo;zuck&rdquo;. Now imagine a root field named <code>usernames</code>, that takes a list of usernames and returns a list of objects:</p>
+<p>분명, 우리는 &ldquo;zuck&rdquo;이라는 사용자 이름으로 오브젝트를 식별하는 요청과 ID가 4인 사용자를 응답에 있는 오브젝트를 연결할 수 있습니다. 이제 사용자 이름으로 된 리스트를 파라미터로 받고 오브젝트 리스트를 리턴하는 <code>usernames</code> 이름을 가진 루트 필드를 생각해 봅시다.</p>
 <pre><code><span class="token punctuation">{</span>
   usernames<span class="token punctuation">(</span><span class="token attr-name">usernames</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"zuck"</span><span class="token punctuation">,</span> <span class="token string">"moskov"</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     id
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>might return:</p>
+<p>아래처럼 리턴할 수 있습니다.</p>
 <pre><code><span class="token punctuation">{</span>
   <span class="token property">"usernames"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
     <span class="token punctuation">{</span>
@@ -1126,17 +1126,17 @@ pre[class*="language-"] {
   <span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>For clients to be able to link the usernames to the responses, it needs to know that the array in the response will be the same size as the array passed as an argument, and that the order in the response will match the order in the argument. We call these <em>plural identifying root fields</em>, and their requirements are described below.</p>
-<section id="sec-Fields" secid="5.1">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Fields">5.1</a></span>Fields</h3>
-<p>A server compliant with this spec may expose root fields that accept a list of input arguments, and returns a list of responses. For spec&#8208;compliant clients to use these fields, these fields must be <em>plural identifying root fields</em>, and obey the following requirements.</p>
-<div id="note-da65e" class="spec-note">
-<a href="#note-da65e">Note</a>
-Spec&#8208;compliant servers may expose root fields that are not <em>plural identifying root fields</em>; the spec&#8208;compliant client will just be unable to use those fields as root fields in its queries.</div>
-<p><em>Plural identifying root fields</em> must have a single argument. The type of that argument must be a non&#8208;null list of non&#8208;nulls. In our <code>usernames</code> example, the field would take a single argument named <code>usernames</code>, whose type (using our type system shorthand) would be <code>[String!]!</code>.</p>
-<p>The return type of a <em>plural identifying root field</em> must be a list, or a non&#8208;null wrapper around a list. The list must wrap the <code>Node</code> interface, an object that implements the <code>Node</code> interface, or a non&#8208;null wrapper around those types.</p>
-<p>Whenever the <em>plural identifying root field</em> is used, the length of the list in the response must be the same as the length of the list in the arguments. Each item in the response must correspond to its item in the input; more formally, if passing the root field an input list <code>Lin</code> resulted in output value <code>Lout</code>, then for an arbitrary permutation <code>P</code>, passing the root field <code>P(Lin)</code> must result in output value <code>P(Lout)</code>.</p>
-<p>Because of this, servers are advised to not have the response type wrap a non&#8208;null wrapper, because if it is unable to fetch the object for a given entry in the input, it still must provide a value in the output for that input entry; <code>null</code> is a useful value for doing so. </p>
+<p>클라이언트가 사용자 이름을 응답에 연결하려면, 응답의 배열은 파라미터에 전달된 배열과 동일한 길이가 될 것이라는 것을 알아야 하고, 응답의 순서도 인자의 순서와 일치한다는 것을 알아야 합니다. 우리는 이를 <em>복수 식별 루트 필드</em>라 부르고, 이 요구사항은 아래에 설명되어 있습니다.</p>
+<section id="sec-undefined.-.-" secid="5.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-">5.1</a></span>필드</h3>
+<p>이 스펙을 준수하는 서버는 입력 인자의 리스트를 받아들이는 루트 필드에 노출할 수 있고, 응답의 리스트를 리턴할 수 있습니다. 스펙을 만족하는 클라이언트가 이러한 필드를 사용하려면, 이 필드는 반드시 <em>복수 식별 루트</em>가 되어야 하고, 다음의 요구사항을 따라야 합니다.</p>
+<div id="note-a0de2" class="spec-note">
+<a href="#note-a0de2">Note</a>
+스펙을 준수하는 서버는 <em>복수 식별 루트 필드</em>가 아닌 루트 필드를 노출할 수 있습니다. 이 스펙을 준수하는 클라이언트는 이러한 필드를 쿼리에서 루트 필드로 사용할 수 없게 됩니다</div>
+<p><em>복수 식별 루트 필드</em>는 반드시 단 하나의 인자를 가져야 합니다. 인자의 타입은 반드시 null이 아닌 것들의 null이 아닌 리스트여야 합니다. 우리의 <code>usernames</code> 예제에서, 필드는 <code>usernames</code>라는 단 하나의 인수를 사용할 것이며, 그 타입은 <code>[String!]!</code>입니다.</p>
+<p><em>복수 식별 루트 필드</em>의 리턴은 반드시 리스트거나, 널이 아닌 래퍼로 된 리스트여야 합니다. 이 리스트는 노드 인터페이스를 구현한 오브젝트나 이러한 유형으로 된 null이 아닌 래퍼로 <code>Node</code> 인터페이스를 반드시 감싸야 합니다, </p>
+<p><em>복수 식별 루트 필드</em>가 사용될 때마다, 응답 리스트의 길이는 인자로 들어오는 리스트의 길이와 반드시 동일해야 합니다. 응답의 각 아이템은 입력의 아이템과 반드시 동일해야 합니다. 좀 더 공식적으로, 만약 루트 필드를 통과하는 <code>Lin</code>이라는 리스트는 출력값인 <code>Lout</code>를 발생시키게 되고, 임의의 순열 <code>P</code>에 대하여 루트 필드 <code>P(Lin)</code>에 전달되면 출력값 <code>P(Lout)</code>이 되어야 합니다.</p>
+<p>이 때문에, 서버는 null이 아닌 래퍼로 감싸져있는 응답 타입을 가지지 않는 것이 권장됩니다. 왜냐하면 만약 주어진 입력의 지정된 항목에 대한 오브젝트를 가져올 수 없다면, 여전히 해당 입력 항목에 대한 출력값을 항상 제공해야 하기 때문입니다. <code>null</code> 은 그렇게 사용되는데 유용한 값입니다. </p>
 </section>
 </section>
 </article>
@@ -1145,25 +1145,25 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label>
 <div class="spec-sidebar" aria-hidden>
 <div class="spec-toc">
-<div class="title"><a href="#">GraphQL Global Object Identification Specification</a></div>
-<ol><li id="_sidebar_1"><a href="#sec-Reserved-Types"><span class="spec-secid">1</span>Reserved Types</a></li>
-<li id="_sidebar_2"><a href="#sec-Node-Interface"><span class="spec-secid">2</span>Node Interface</a>
+<div class="title"><a href="#">GraphQL 전역 오브젝트 식별 사양</a></div>
+<ol><li id="_sidebar_1"><a href="#sec-undefined.-"><span class="spec-secid">1</span>예약된 타입</a></li>
+<li id="_sidebar_2"><a href="#sec-undefined.Node-"><span class="spec-secid">2</span>Node 인터페이스</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_2" /><label for="_sidebar_toggle_2"></label>
 <ol>
-<li id="_sidebar_2.1"><a href="#sec-Node-Interface.Introspection"><span class="spec-secid">2.1</span>Introspection</a></li>
+<li id="_sidebar_2.1"><a href="#sec-undefined.Node-.-"><span class="spec-secid">2.1</span>스키마 확인</a></li>
 </ol>
 </li>
-<li id="_sidebar_3"><a href="#sec-Node-root-field"><span class="spec-secid">3</span>Node root field</a>
+<li id="_sidebar_3"><a href="#sec-undefined.Node-"><span class="spec-secid">3</span>Node 루트 필드</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_3" /><label for="_sidebar_toggle_3"></label>
 <ol>
-<li id="_sidebar_3.1"><a href="#sec-Node-root-field.Introspection"><span class="spec-secid">3.1</span>Introspection</a></li>
+<li id="_sidebar_3.1"><a href="#sec-undefined.Node-.-"><span class="spec-secid">3.1</span>스키마 확인</a></li>
 </ol>
 </li>
-<li id="_sidebar_4"><a href="#sec-Field-stability"><span class="spec-secid">4</span>Field stability</a></li>
-<li id="_sidebar_5"><a href="#sec-Plural-identifying-root-fields"><span class="spec-secid">5</span>Plural identifying root fields</a>
+<li id="_sidebar_4"><a href="#sec-undefined.-"><span class="spec-secid">4</span>필드 안정성</a></li>
+<li id="_sidebar_5"><a href="#sec-undefined.-"><span class="spec-secid">5</span>복수 식별 루트 필드</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_5" /><label for="_sidebar_toggle_5"></label>
 <ol>
-<li id="_sidebar_5.1"><a href="#sec-Fields"><span class="spec-secid">5.1</span>Fields</a></li>
+<li id="_sidebar_5.1"><a href="#sec-undefined.-.-"><span class="spec-secid">5.1</span>필드</a></li>
 </ol>
 </li>
 </ol>

@@ -1,15 +1,11 @@
-GraphQL Global Object Identification Specification
+GraphQL 전역 오브젝트 식별 사양
 ------------------------------------------------
 
-To provide options for GraphQL clients to elegantly handle for caching and data 
-refetching GraphQL servers need to expose object identifiers in a standardized 
-way. In the query, the schema should provide a standard mechanism for asking 
-for an object by ID. In the response, the schema provides a standard way of 
-providing these IDs.
+GraphQL 클라이언트에게 캐싱과 data refetching을 우아하게 처리할 수 있는 옵션을 제공하려면 GraphQL 서버는 표준화된 방법으로 객체 식별자들을 보여줄 수 있어야 합니다. 쿼리에선 스키마는 ID로 오브젝트를 요청하는 표준 메커니즘을 제공해야 합니다. 응답에선 스키마는 이 ID들을 제공하는 표준 방법 제공해야 합니다.
 
-We refer to objects with identifiers as "nodes".
+우리는 식별자를 가진 오브젝트를 "nodes"이라고 부릅니다.
 
-An example of both of those is the following query:
+이 두 예제는 다음 쿼리입니다.
 
 ```graphql
 {
@@ -21,33 +17,27 @@ An example of both of those is the following query:
   }
 ```
 
- - Refetching the object is done with the `node` field on the root query object.
- - The ID to be used for refetching is provided in an `id` field on the result.
+ - 오브젝트 리페칭은 루트 쿼리 오브젝트의 필드에 있는 `node`의 필드로 끝납니다.
+ - 리페칭에 사용될 ID는 결과의 `id`필드에 제공됩니다.
 
-This section of the spec describes the formal requirements around object
-refetching.
+이 섹션에선 오브젝트 리페칭과 관련된 공식 요구사항에 대해 설명합니다
 
-# Reserved Types
+# 예약된 타입
 
-A GraphQL server compatible with this spec must reserve certain types and type names
-to support the consistent object identification model. In particular, this spec creates 
-guidelines for the following types:
+일관된 오브젝트 식별 모델을 지원하기 위해 이 스펙과 호환이 되는 GraphQL 서버는 특정 타입과 특정 이름을 반드시 예약해야 합니다.  특히, 이 스펙은 아래의 타입에 대한 가이드라인을 만듭니다:
 
- - An interface named `Node`.
- - The `node` field on the root query type.
+ - `Node` 라는 이름의 인터페이스.
+ - 루트 쿼리 타입의 필드인 `node` 필드.
 
-# Node Interface
+# Node 인터페이스
 
-The server must provide an interface called `Node`. That interface
-must include exactly one field, called `id` that returns a non-null `ID`.
+서버는 `Node`라 불리는 인터페이스를 반드시 제공해야 합니다. 이 인터페이스에는 null이 아닌 `id`라는 이름의 `ID` 필드를 오직 하나만 포함하고 있어야 합니다. 
 
-This `id` should be a globally unique identifier for this object, and given
-just this `id`, the server should be able to refetch the object.
+이 `id`는 오브젝트에서 반드시 전역적으로 유니크한 식별자여야 하고 이 `id`가 주어진다면, 서버는 오브젝트를 리페칭 할 수 있어야 합니다.
 
-## Introspection
+## 스키마 확인
 
-A server that correctly implements the above interface will accept the following
-introspection query, and return the provided response:
+아래의 인터페이스를 정확하게 구현한 서버는 아래의 스키마 확인 쿼리를 받아들일 것이고, 제공된 응답을 반환합니다
 
 ```graphql
 {
@@ -68,7 +58,7 @@ introspection query, and return the provided response:
 }
 ```
 
-yields
+결과
 
 ```json
 {
@@ -91,27 +81,17 @@ yields
 }
 ```
 
-# Node root field
+# Node 루트 필드
 
-The server must provide a root field called `node` that returns the `Node`
-interface. This root field must take exactly one argument, a non-null ID
-named `id`.
+서버는 `Node` 인터페이스를 리턴하는 `node` 라 불리는 루트 필드를 반드시 제공해야 합니다. 이 루트 필드는 null이 아닌 ID 타입의 `id`라는 이름의 인자를 반드시 하나만 가져야 합니다.
 
-If a query returns an object that implements `Node`, then this root field
-should refetch the identical object when value returned by the server in the
-`Node`'s `id` field is passed as the `id` parameter to the `node` root field.
+만약 쿼리가 `Node`를 구현한 오브젝트를 리턴한다면, `Node`의 `id` 필드에 서버로부터 리턴된 값이 `node` 루트 필드의 `id` 파라미터로 들어갈 때 이 루트 필드는 동일한 오브젝트를 리페칭 해야 합니다.
 
-The server must make a best effort to fetch this data, but it may not always
-be possible; for example, the server may return a `User` with a valid `id`,
-but when the request is made to refetch that user with the `node` root field,
-the user's database may be unavailable, or the user may have deleted their
-account. In this case, the result of querying this field should be `null`.
+서버는 반드시 이 데이터를 가져오기 위한 최선의 노력을 다해야 합니다만, 이는 항상 가능하지 않습니다. 예를 들어, 서버가 유효한 `id`를 가진 `User`를 리턴할 수 있지만, 요청이 `node`의 루트 필드와 함께 해당 유저를 리페칭하도록 만들어졌을 때, 그 유저의 데이터베이스는 아마 사용할 수 없거나, 유저가 계정에서 삭제했을 수 있습니다. 이 경우엔, 이 필드의 질의의 결과는 `null`이어야 합니다.
 
-## Introspection
+## 스키마 확인
 
-A server that correctly implements the above requirement will accept the
-following introspection query, and return a response that contains the
-provided response.
+정확하게 위의 요구사항을 구현한 서버는 다음의 스키마 확인 쿼리를 받아들이고, 제공된 응답을 포함하는 응답을 리턴합니다.
 
 ```graphql
 {
@@ -139,7 +119,7 @@ provided response.
 }
 ```
 
-yields
+결과
 
 ```json
 {
@@ -172,24 +152,18 @@ yields
 }
 ```
 
-# Field stability
+# 필드 안정성
 
-If two objects appear in a query, both implementing `Node` with identical
-IDs, then the two objects must be equal.
+두 개의 오브젝트가 쿼리에 있고, 둘 다 동일한 ID로 `Node`를 구현했다면, 그 두 오브젝트는 반드시 같아야 합니다.
 
-For the purposes of this definition, object equality is defined as follows:
+이 정의의 목적상, 오브젝트 동일성은 다음과 같이 정의됩니다:
 
- - If a field is queried on both objects, the result of querying that field on
-the first object must be equal to the result of querying that field on the
-second object.
-   - If the field returns a scalar, equality is defined as is appropriate for
-   that scalar.
-   - If the field returns an enum, equality is defined as both fields returning
-   the same enum value.
-   - If the field returns an object, equality is defined recursively as per the
-   above.
+ - 만약 두 오브젝트에서 하나의 필드가 질의되는 경우, 첫 번째 오브젝트에서 필드를 질의한 결과는 두 번째 오브젝트에서 질의한 필드의 결과와 반드시 같아야 합니다.
+   - 필드가 스칼라 타입을 리턴한다면, 동일성은 해당 스칼라 타입에 적합한 것으로 정의됩니다.
+   - enum 타입을 리턴한다면, 동일성은 두 필드 모두 같은 enum 타입 값을 리턴하는 것으로 정의됩니다.
+   - 오브젝트를 리턴한다면, 동일성은 위와 같이 재귀적으로 정의됩니다.
 
-For example:
+예를 들어, 아래처럼 질의한다면:
 
 ```graphql
 {
@@ -216,7 +190,7 @@ For example:
 }
 ```
 
-might return:
+아래처럼 리턴할 수 있습니다.
 
 ```json
 {
@@ -239,14 +213,11 @@ might return:
 }
 ```
 
-Because `fourNode.id` and `fiveNode.userWithIdOneLess.id` are the same, we are
-guaranteed by the conditions above that `fourNode.name` must be the same as
-`fiveNode.userWithIdOneLess.name`, and indeed it is.
+`fourNode.id` 와 `fiveNode.userWithIdOneLess.id`는 같기 때문에, `fourNode.name`은 `fiveNode.userWithIdOneLess.name` 과 반드시 동일해야 한다는 위 조건은 보장되고, 실제로도 그렇습니다.
 
-# Plural identifying root fields
+# 복수 식별 루트 필드
 
-Imagine a root field named `username`, that takes a user's username and
-returns the corresponding user:
+한 루트 필드의 이름이 `username`이고, 이는 사용자의 사용자 이름과 해당되는 사용자를 리턴하는 것을 가정해 봅시다.
 
 ```graphql
 {
@@ -256,7 +227,7 @@ returns the corresponding user:
 }
 ```
 
-might return:
+아래처럼 리턴할 수 있습니다.
 
 ```json
 {
@@ -266,10 +237,7 @@ might return:
 }
 ```
 
-Clearly, we can link up the object in the response, the user with ID 4,
-with the request, identifying the object with username "zuck". Now imagine a
-root field named `usernames`, that takes a list of usernames and returns a
-list of objects:
+분명, 우리는 "zuck"이라는 사용자 이름으로 오브젝트를 식별하는 요청과 ID가 4인 사용자를 응답에 있는 오브젝트를 연결할 수 있습니다. 이제 사용자 이름으로 된 리스트를 파라미터로 받고 오브젝트 리스트를 리턴하는  `usernames` 이름을 가진 루트 필드를 생각해 봅시다.
 
 
 ```graphql
@@ -280,7 +248,7 @@ list of objects:
 }
 ```
 
-might return:
+아래처럼 리턴할 수 있습니다.
 
 ```json
 {
@@ -295,41 +263,19 @@ might return:
 }
 ```
 
-For clients to be able to link the usernames to the responses, it needs to
-know that the array in the response will be the same size as the array
-passed as an argument, and that the order in the response will match the
-order in the argument. We call these *plural identifying root fields*, and
-their requirements are described below.
+클라이언트가 사용자 이름을 응답에 연결하려면, 응답의 배열은 파라미터에 전달된 배열과 동일한 길이가 될 것이라는 것을 알아야 하고, 응답의 순서도 인자의 순서와 일치한다는 것을 알아야 합니다. 우리는 이를 *복수 식별 루트 필드*라 부르고, 이 요구사항은 아래에 설명되어 있습니다.
 
-## Fields
+## 필드
 
-A server compliant with this spec may expose root fields that accept a list of input
-arguments, and returns a list of responses. For spec-compliant clients to use these fields,
-these fields must be *plural identifying root fields*, and obey the following
-requirements.
+이 스펙을 준수하는 서버는 입력 인자의 리스트를 받아들이는 루트 필드에 노출할 수 있고, 응답의 리스트를 리턴할 수 있습니다. 스펙을 만족하는 클라이언트가 이러한 필드를 사용하려면, 이 필드는 반드시 *복수 식별 루트*가 되어야 하고, 다음의 요구사항을 따라야 합니다.
 
-NOTE Spec-compliant servers may expose root fields that are not *plural
-identifying root fields*; the spec-compliant client will just be unable to use those
-fields as root fields in its queries.
+NOTE 스펙을 준수하는 서버는 *복수 식별 루트 필드*가 아닌 루트 필드를 노출할 수 있습니다. 이 스펙을 준수하는 클라이언트는 이러한 필드를 쿼리에서 루트 필드로 사용할 수 없게 됩니다
 
-*Plural identifying root fields* must have a single argument. The type of that
-argument must be a non-null list of non-nulls. In our `usernames` example, the
-field would take a single argument named `usernames`, whose type (using our type
-system shorthand) would be `[String!]!`.
+*복수 식별 루트 필드*는 반드시 단 하나의 인자를 가져야 합니다. 인자의 타입은 반드시 null이 아닌 것들의 null이 아닌 리스트여야 합니다. 우리의 `usernames` 예제에서, 필드는 `usernames`라는 단 하나의 인수를 사용할 것이며, 그 타입은 `[String!]!`입니다.
 
-The return type of a *plural identifying root field* must be a list, or a
-non-null wrapper around a list. The list must wrap the `Node` interface, an
-object that implements the `Node` interface, or a non-null wrapper around
-those types.
+*복수 식별 루트 필드*의 리턴은 반드시 리스트거나, 널이 아닌 래퍼로 된 리스트여야 합니다. 이 리스트는 노드 인터페이스를 구현한  오브젝트나 이러한 유형으로 된 null이 아닌 래퍼로  `Node` 인터페이스를 반드시 감싸야 합니다, 
 
-Whenever the *plural identifying root field* is used, the length of the
-list in the response must be the same as the length of the list in the
-arguments. Each item in the response must correspond to its item in the input;
-more formally, if passing the root field an input list `Lin` resulted in output
-value `Lout`, then for an arbitrary permutation `P`, passing the root field
-`P(Lin)` must result in output value `P(Lout)`.
+*복수 식별 루트 필드*가 사용될 때마다, 응답 리스트의 길이는 인자로 들어오는 리스트의 길이와 반드시 동일해야 합니다. 응답의 각 아이템은 입력의 아이템과 반드시 동일해야 합니다. 좀 더 공식적으로, 만약 루트 필드를 통과하는 `Lin`이라는 리스트는 출력값인 `Lout`를 발생시키게 되고, 임의의 순열 `P`에 대하여 루트 필드 `P(Lin)`에 전달되면 출력값 `P(Lout)`이 되어야 합니다.
 
-Because of this, servers are advised to not have the response type
-wrap a non-null wrapper, because if it is unable to fetch the object for
-a given entry in the input, it still must provide a value in the output
-for that input entry; `null` is a useful value for doing so.
+
+이 때문에, 서버는 null이 아닌 래퍼로 감싸져있는 응답 타입을 가지지 않는 것이 권장됩니다. 왜냐하면 만약 주어진 입력의 지정된 항목에 대한 오브젝트를 가져올 수 없다면, 여전히 해당 입력 항목에 대한 출력값을 항상 제공해야 하기 때문입니다. `null` 은 그렇게 사용되는데 유용한 값입니다.
