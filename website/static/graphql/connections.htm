@@ -2,7 +2,7 @@
 <!-- Built with spec-md https://spec-md.com -->
 <html>
 <head><meta charset="utf-8">
-<title>GraphQL Cursor Connections Specification</title>
+<title>GraphQL 커서 연결 사양</title>
 <style>body {
   color: #333333;
   font: 13pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
@@ -870,12 +870,12 @@ pre[class*="language-"] {
 </head>
 <body><article>
 <header>
-<h1>GraphQL Cursor Connections Specification</h1>
+<h1>GraphQL 커서 연결 사양</h1>
 <section id="intro">
-<p>This specification aims to provide an option for GraphQL clients to consistently handle <a href="https://graphql.org/learn/pagination/">pagination best practices</a> with support for related metadata via a GraphQL server. This spec proposes calling this pattern &ldquo;Connections&rdquo; and exposing them in a standardized way. </p>
-<p>In the query, the connection model provides a standard mechanism for slicing and paginating the result set.</p>
-<p>In the response, the connection model provides a standard way of providing cursors, and a way of telling the client when more results are available.</p>
-<p>An example of all four of those is the following query:</p>
+<p>본 문서는 GraphQL 클라이언트가 GraphQL 서버를 통해 관련 메타데이터를 지원하면서 <a href="https://graphql.org/learn/pagination/">페이지네이션의 모범 사례</a>를 일관되게 처리하는 방법을 제공하는 것을 목표로 합니다. 본 문서는 이러한 패턴을 &ldquo;커넥션&rdquo;이라 부르고 표준화된 방식으로 노출하는 것을 제안합니다.</p>
+<p>쿼리에서 이 커넥션 모델은 결과 집합에 슬라이싱과 페이지네이션을 하는 표준 메커니즘을 제공합니다. </p>
+<p>응답에선 이 커넥션 모델은 커서를 제공하는 표준화된 방법과 더 많은 리턴 값이 사용 가능할 때 클라이언트에게 알려주는 방법을 제공합니다.</p>
+<p>다음 쿼리는 이러한 것들의 네 가지 예시입니다.</p>
 <pre><code><span class="token punctuation">{</span>
   user <span class="token punctuation">{</span>
     id
@@ -895,91 +895,91 @@ pre[class*="language-"] {
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>In this case, <code>friends</code> is a connection. That query demonstrates the four features described above:</p>
+<p>이 예시에서, <code>friends</code>는 커넥션입니다. 이 쿼리는 위에서 설명한 네 가지 특징을 보여줍니다.</p>
 <ul>
-<li>Slicing is done with the <code>first</code> argument to <code>friends</code>. This asks for the connection to return 10 friends.</li>
-<li>Pagination is done with the <code>after</code> argument to <code>friends</code>. We passed in a cursor, so we asked for the server to return friends after that cursor.</li>
-<li>For each edge in the connection, we asked for a cursor. This cursor is an opaque string, and is precisely what we would pass to the <code>after</code> arg to paginate starting after this edge.</li>
-<li>We asked for <code>hasNextPage</code>; that will tell us if there are more edges available, or if we&rsquo;ve reached the end of this connection.</li>
+<li>슬라이싱은 <code>friends</code>에 있는 <code>first</code> 인자 값으로 결정됩니다. 위 쿼리에선 커넥션에게 10명의 친구를 리턴해달라고 요청합니다.</li>
+<li>페이지네이션은 <code>friends</code>에 있는 <code>after</code> 인자 값으로 결정됩니다. 커서를 전달했기 때문에, 서버에게 커서 뒤에 있는 친구를 리턴해달라고 요청했습니다.</li>
+<li>커넥션에 있는 각 엣지에서 커서를 요청했습니다. 이 커서는 불투명 스트링이고, 정확히 엣지 이후부터 시작으로 페이징하기 위해 <code>after</code> 인자에 전달할 것입니다.</li>
+<li><code>hasNextPage</code>를 요청했습니다. <code>hasNextPage</code>는 사용 가능한 엣지가 있다거나 이 커넥션의 끝에 도착한다면 알려줄 것입니다.</li>
 </ul>
-<p>This section of the spec describes the formal requirements around connections.</p>
+<p>이 섹션에서는 커넥션과 관련된 공식적인 요구사항을 설명합니다.</p>
 </section>
 <nav class="spec-toc">
 <div class="title">Contents</div>
 <ol>
-<li><a href="#sec-Reserved-Types"><span class="spec-secid">1</span>Reserved Types</a></li>
-<li><a href="#sec-Connection-Types"><span class="spec-secid">2</span>Connection Types</a>
+<li><a href="#sec-undefined.-"><span class="spec-secid">1</span>예약된 타입</a></li>
+<li><a href="#sec-undefined.-"><span class="spec-secid">2</span>커넥션 타입</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_2" /><label for="_toggle_2"></label>
 <ol>
-<li><a href="#sec-Connection-Types.Fields"><span class="spec-secid">2.1</span>Fields</a>
+<li><a href="#sec-undefined.-.-"><span class="spec-secid">2.1</span>필드</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_2.1" /><label for="_toggle_2.1"></label>
 <ol>
-<li><a href="#sec-Edges"><span class="spec-secid">2.1.1</span>Edges</a></li>
-<li><a href="#sec-Connection-Types.Fields.PageInfo"><span class="spec-secid">2.1.2</span>PageInfo</a></li>
+<li><a href="#sec-undefined.-.-.-"><span class="spec-secid">2.1.1</span>엣지</a></li>
+<li><a href="#sec-PageInfo-"><span class="spec-secid">2.1.2</span>PageInfo 필드</a></li>
 </ol>
 </li>
-<li><a href="#sec-Connection-Types.Introspection"><span class="spec-secid">2.2</span>Introspection</a></li>
+<li><a href="#sec-undefined.-.-"><span class="spec-secid">2.2</span>스키마 확인</a></li>
 </ol>
 </li>
-<li><a href="#sec-Edge-Types"><span class="spec-secid">3</span>Edge Types</a>
+<li><a href="#sec-undefined.-"><span class="spec-secid">3</span>엣지 타입</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_3" /><label for="_toggle_3"></label>
 <ol>
-<li><a href="#sec-Edge-Types.Fields"><span class="spec-secid">3.1</span>Fields</a>
+<li><a href="#sec-undefined.-.-"><span class="spec-secid">3.1</span>필드</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_3.1" /><label for="_toggle_3.1"></label>
 <ol>
-<li><a href="#sec-Node"><span class="spec-secid">3.1.1</span>Node</a></li>
-<li><a href="#sec-Cursor"><span class="spec-secid">3.1.2</span>Cursor</a></li>
+<li><a href="#sec-undefined.-.-.-"><span class="spec-secid">3.1.1</span>노드</a></li>
+<li><a href="#sec-undefined.-.-.-"><span class="spec-secid">3.1.2</span>커서</a></li>
 </ol>
 </li>
-<li><a href="#sec-Edge-Types.Introspection"><span class="spec-secid">3.2</span>Introspection</a></li>
+<li><a href="#sec-undefined.-.-"><span class="spec-secid">3.2</span>스키마 확인</a></li>
 </ol>
 </li>
-<li><a href="#sec-Arguments"><span class="spec-secid">4</span>Arguments</a>
+<li><a href="#sec-undefined.-"><span class="spec-secid">4</span>인수</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_4" /><label for="_toggle_4"></label>
 <ol>
-<li><a href="#sec-Forward-pagination-arguments"><span class="spec-secid">4.1</span>Forward pagination arguments</a></li>
-<li><a href="#sec-Backward-pagination-arguments"><span class="spec-secid">4.2</span>Backward pagination arguments</a></li>
-<li><a href="#sec-Edge-order"><span class="spec-secid">4.3</span>Edge order</a></li>
-<li><a href="#sec-Pagination-algorithm"><span class="spec-secid">4.4</span>Pagination algorithm</a></li>
+<li><a href="#sec-undefined.-.-"><span class="spec-secid">4.1</span>정방향 페이지네이션의 인수</a></li>
+<li><a href="#sec-undefined.-.-"><span class="spec-secid">4.2</span>역방향 페이지네이션의 인수</a></li>
+<li><a href="#sec-undefined.-.-"><span class="spec-secid">4.3</span>엣지 순서</a></li>
+<li><a href="#sec-undefined.-.-"><span class="spec-secid">4.4</span>페이지네이션 알고리즘</a></li>
 </ol>
 </li>
-<li><a href="#sec-undefined.PageInfo"><span class="spec-secid">5</span>PageInfo</a>
+<li><a href="#sec-PageInfo"><span class="spec-secid">5</span>PageInfo</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_5" /><label for="_toggle_5"></label>
 <ol>
-<li><a href="#sec-undefined.PageInfo.Fields"><span class="spec-secid">5.1</span>Fields</a></li>
-<li><a href="#sec-undefined.PageInfo.Introspection"><span class="spec-secid">5.2</span>Introspection</a></li>
+<li><a href="#sec-PageInfo.-"><span class="spec-secid">5.1</span>필드</a></li>
+<li><a href="#sec-PageInfo.-"><span class="spec-secid">5.2</span>스키마 확인</a></li>
 </ol>
 </li>
 <li><a href="#index"><span class="spec-secid">§</span>Index</a></li>
 </ol>
 </nav>
 </header>
-<section id="sec-Reserved-Types" secid="1">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-Reserved-Types">1</a></span>Reserved Types</h2>
-<p>A GraphQL server which conforms to this spec must reserve certain types and type names to support the pagination model of connections. In particular, this spec creates guidelines for the following types:</p>
+<section id="sec-undefined.-" secid="1">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-">1</a></span>예약된 타입</h2>
+<p>이 스펙을 준수하는 GraphQL 서버는 커넥션의 페이지네이션 모델을 지원하기 위해 특정 타입과 타입 이름을 정해두고 있어야 합니다. 특히, 이 스펙은 다음 타입에 관한 가이드라인을 제공합니다.</p>
 <ul>
-<li>Any object whose name ends in &ldquo;Connection&rdquo;.</li>
-<li>An object named <code>PageInfo</code>.</li>
+<li>이름이 &ldquo;Connection&rdquo;으로 끝나는 모든 오브젝트.</li>
+<li><code>PageInfo</code>라는 이름의 오브젝트.</li>
 </ul>
 </section>
-<section id="sec-Connection-Types" secid="2">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-Connection-Types">2</a></span>Connection Types</h2>
-<p>Any type whose name ends in &ldquo;Connection&rdquo; is considered by this spec to be a <em>Connection Type</em>. Connection types must be an &ldquo;Object&rdquo; as defined in the &ldquo;Type System&rdquo; section of the GraphQL Specification.</p>
-<section id="sec-Connection-Types.Fields" secid="2.1">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Connection-Types.Fields">2.1</a></span>Fields</h3>
-<p>Connection types must have fields named <code>edges</code> and <code>pageInfo</code>. They may have additional fields related to the connection, as the schema designer sees fit.</p>
-<section id="sec-Edges" secid="2.1.1">
-<h4><span class="spec-secid" title="link to this section"><a href="#sec-Edges">2.1.1</a></span>Edges</h4>
-<p>A &ldquo;Connection Type&rdquo; must contain a field called <code>edges</code>. This field must return a list type that wraps an edge type, where the requirements of an edge type are defined in the &ldquo;Edge Types&rdquo; section below.</p>
+<section id="sec-undefined.-" secid="2">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-">2</a></span>커넥션 타입</h2>
+<p>본 스펙에서는 &ldquo;Connection&rdquo;으로 끝나는 이름을 가진 모든 타입은 <em>커넥션 타입</em> 으로 간주됩니다. 커넥션 타입은 GraphQL 기술서의 &ldquo;타입 시스템&rdquo; 섹션에 정의된 &ldquo;오브젝트&rdquo;여야 합니다.</p>
+<section id="sec-undefined.-.-" secid="2.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-">2.1</a></span>필드</h3>
+<p>커넥션 타입은 <code>edges</code>와 <code>pageInfo</code>라는 필드를 가져야 합니다. 스키마 설계자가 적합하다고 판단이 되면, 커넥션과 관련된 추가적인 필드를 가질 수 있습니다.</p>
+<section id="sec-undefined.-.-.-" secid="2.1.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-.-">2.1.1</a></span>엣지</h4>
+<p>&rdquo;커넥션 타입&rdquo;은 <code>edges</code>라는 필드를 포함해야 합니다. 이 필드는 엣지 타입을 감싸는 리스트 타입을 리턴해야 합니다. 이 엣지 타입의 요구사항은 아래 &ldquo;엣지 타입&rdquo; 섹션에 정의되어 있습니다.</p>
 </section>
-<section id="sec-Connection-Types.Fields.PageInfo" secid="2.1.2">
-<h4><span class="spec-secid" title="link to this section"><a href="#sec-Connection-Types.Fields.PageInfo">2.1.2</a></span>PageInfo</h4>
-<p>A &ldquo;Connection Type&rdquo; must contain a field called <code>pageInfo</code>. This field must return a non&#8208;null <code>PageInfo</code> object, as defined in the &ldquo;PageInfo&rdquo; section below.</p>
+<section id="sec-PageInfo-" secid="2.1.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-PageInfo-">2.1.2</a></span>PageInfo 필드</h4>
+<p>&rdquo;커넥션 타입&rdquo;은 <code>pageInfo</code>라는 필드를 포함해야 합니다. 이 필드는 밑의 &ldquo;PageInfo&rdquo; 섹션에 정의된 것처럼 null이 아닌 <code>pageInfo</code> 오브젝트를 리턴해야 합니다.</p>
 </section>
 </section>
-<section id="sec-Connection-Types.Introspection" secid="2.2">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Connection-Types.Introspection">2.2</a></span>Introspection</h3>
-<p>If <code>ExampleConnection</code> existed in the type system, it would be a connection, since its name ends in &ldquo;Connection&rdquo;. If this connection&rsquo;s edge type was named <code>ExampleEdge</code>, then a server that correctly implements the above requirement would accept the following introspection query, and return the provided response:</p>
+<section id="sec-undefined.-.-" secid="2.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-">2.2</a></span>스키마 확인</h3>
+<p><code>ExampleConnection</code>이 타입 시스템에 존재한다면, 이름이 &ldquo;Connection&rdquo;으로 끝나기 때문에 커넥션이 될 것입니다. 만약 이 커넥션의 엣지 타입이 <code>ExampleEdge</code>라고 이름 지어졌다면, 위의 요구사항을 올바르게 구현한 서버는 아래의 스키마 확인 쿼리를 받아들일 것이고, 아래처럼 제공된 응답을 리턴할 것입니다.</p>
 <pre><code><span class="token punctuation">{</span>
   __type<span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token string">"ExampleConnection"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     fields <span class="token punctuation">{</span>
@@ -996,7 +996,7 @@ pre[class*="language-"] {
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>returns</p>
+<p>리턴</p>
 <pre><code><span class="token punctuation">{</span>
   <span class="token property">"data"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"__type"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1031,29 +1031,29 @@ pre[class*="language-"] {
 </code></pre>
 </section>
 </section>
-<section id="sec-Edge-Types" secid="3">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-Edge-Types">3</a></span>Edge Types</h2>
-<p>A type that is returned in list form by a connection type&rsquo;s <code>edges</code> field is considered by this spec to be an <em>Edge Type</em>. Edge types must be an &ldquo;Object&rdquo; as defined in the &ldquo;Type System&rdquo; section of the GraphQL Specification.</p>
-<section id="sec-Edge-Types.Fields" secid="3.1">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Edge-Types.Fields">3.1</a></span>Fields</h3>
-<p>Edge types must have fields named <code>node</code> and <code>cursor</code>. They may have additional fields related to the edge, as the schema designer sees fit.</p>
-<section id="sec-Node" secid="3.1.1">
-<h4><span class="spec-secid" title="link to this section"><a href="#sec-Node">3.1.1</a></span>Node</h4>
-<p>An &ldquo;Edge Type&rdquo; must contain a field called <code>node</code>. This field must return either a Scalar, Enum, Object, Interface, Union, or a Non&#8208;Null wrapper around one of those types. Notably, this field <em>cannot</em> return a list.</p>
-<div id="note-c0d4d" class="spec-note">
-<a href="#note-c0d4d">Note</a>
-The naming echoes that of the &ldquo;Node&rdquo; interface and &ldquo;node&rdquo; root field as described in a later section of this spec. Spec&#8208;compliant clients can perform certain optimizations if this field returns an object that implements <code>Node</code>, however, this is not a strict requirement for conforming.</div>
+<section id="sec-undefined.-" secid="3">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-">3</a></span>엣지 타입</h2>
+<p>커넥션 타입의 엣지 필드에서 리스트 형식으로 리턴된 타입은 본 스펙에 의해 <em>엣지 타입</em> 이라고 간주됩니다. 엣지 타입은 반드시 GraphQL 기술서의 &ldquo;타입 시스템&rdquo; 섹션에 정의된 대로 &ldquo;오브젝트&rdquo;여야 합니다. </p>
+<section id="sec-undefined.-.-" secid="3.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-">3.1</a></span>필드</h3>
+<p>엣지 타입은 <code>node</code>와 <code>cursor</code>라는 필드를 가져야 합니다. 스키마 설계자가 적합하다고 판단이 되면 엣지와 관련된 추가적인 필드를 가질 수도 있습니다.</p>
+<section id="sec-undefined.-.-.-" secid="3.1.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-.-">3.1.1</a></span>노드</h4>
+<p>&rdquo;엣지 타입&rdquo;은 <code>node</code>라는 필드를 포함해야 합니다. 이 필드는 반드시 스칼라, Enum, 오브젝트, 인터페이스, 유니온 또는 이 타입 중 하나를 감싸는 null이 아닌 래퍼 중 하나를 리턴해야 합니다. 특히 이 필드는 <em>리스트를 리턴할 수 없습니다.</em></p>
+<div id="note-aae7a" class="spec-note">
+<a href="#note-aae7a">Note</a>
+네이밍은 이 스펙의 마지막에 설명된 대로 &ldquo;Node&rdquo; 인터페이스와 &ldquo;node&rdquo; 루트 필드를 반영합니다. 이 필드가 노드를 상속받은 오브젝트를 리턴한다면 스펙을 충족하는 클라이언트는 특정한 최적화를 수행할 수 있습니다만, 이는 스펙 준수를 위한 엄격한 요구사항은 아닙니다.</div>
 </section>
-<section id="sec-Cursor" secid="3.1.2">
-<h4><span class="spec-secid" title="link to this section"><a href="#sec-Cursor">3.1.2</a></span>Cursor</h4>
-<p>An &ldquo;Edge Type&rdquo; must contain a field called <code>cursor</code>. This field must return a type that serializes as a String; this may be a String, a Non&#8208;Null wrapper around a String, a custom scalar that serializes as a String, or a Non&#8208;Null wrapper around a custom scalar that serializes as a String.</p>
-<p>Whatever type this field returns will be referred to as the <em>cursor type</em> in the rest of this spec.</p>
-<p>The result of this field should be considered opaque by the client, but will be passed back to the server as described in the &ldquo;Arguments&rdquo; section below.</p>
+<section id="sec-undefined.-.-.-" secid="3.1.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-.-">3.1.2</a></span>커서</h4>
+<p>&rdquo;엣지 타입&rdquo;은 <code>cursor</code>라는 필드를 포함해야 합니다. 이 필드는 문자열로 직렬화한 타입을 리턴해야 합니다. 이 커서 필드는 String 타입이거나 String을 둘러싼 null이 아닌 wrapper, 문자열을 직렬화한 커스텀 스칼라 또는 String으로 직렬화한 커스텀 스칼라 타입으로 둘러싼 null이 아닌 wrapper 중 하나일 수 있습니다.</p>
+<p>이 필드가 리턴하는 타입을 이후의 스펙 문서에서는 <em>커서 타입</em>이라 하겠습니다.</p>
+<p>이 필드의 결과는 클라이언트에게는 불투명하게 간주되어야 합니다만, 아래의 &ldquo;인수&rdquo; 섹션에서 설명한 것처럼 서버로 다시 전달됩니다.</p>
 </section>
 </section>
-<section id="sec-Edge-Types.Introspection" secid="3.2">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Edge-Types.Introspection">3.2</a></span>Introspection</h3>
-<p>If <code>ExampleEdge</code> is an edge type in our schema, that returned &ldquo;Example&rdquo; objects, then a server that correctly implements the above requirement would accept the following introspection query, and return the provided response:</p>
+<section id="sec-undefined.-.-" secid="3.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-">3.2</a></span>스키마 확인</h3>
+<p>&ldquo;Example&rdquo; 오브젝트를 리턴하는 스키마에서 <code>ExampleEdge</code>이 엣지 타입이라면, 위의 요구사항을 정확하게 충족하는 서버는 스키마 확인 쿼리를 받아들이고 주어진 응답을 리턴합니다.</p>
 <pre><code><span class="token punctuation">{</span>
   __type<span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token string">"ExampleEdge"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     fields <span class="token punctuation">{</span>
@@ -1070,7 +1070,7 @@ The naming echoes that of the &ldquo;Node&rdquo; interface and &ldquo;node&rdquo
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>returns</p>
+<p>리턴</p>
 <pre><code><span class="token punctuation">{</span>
   <span class="token property">"data"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"__type"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1103,143 +1103,143 @@ The naming echoes that of the &ldquo;Node&rdquo; interface and &ldquo;node&rdquo
 </code></pre>
 </section>
 </section>
-<section id="sec-Arguments" secid="4">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-Arguments">4</a></span>Arguments</h2>
-<p>A field that returns a <em>Connection Type</em> must include forward pagination arguments, backward pagination arguments, or both. These pagination arguments allow the client to slice the set of edges before it is returned.</p>
-<section id="sec-Forward-pagination-arguments" secid="4.1">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Forward-pagination-arguments">4.1</a></span>Forward pagination arguments</h3>
-<p>To enable forward pagination, two arguments are required.</p>
+<section id="sec-undefined.-" secid="4">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-">4</a></span>인수</h2>
+<p><em>커넥션 타입</em>을 리턴하는 필드는 반드시 정방향 페이지네이션의 인수를 가져야 하거나 역방향 페이지네이션의 인수 또는 역방향, 정방향 페이지네이션 인수 둘 다 가지고 있어야 합니다. 이러한 페이지네이션 인수는 리턴하기 전에 클라이언트가 엣지 세트를 자를 수 있도록 합니다.</p>
+<section id="sec-undefined.-.-" secid="4.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-">4.1</a></span>정방향 페이지네이션의 인수</h3>
+<p>정방향 페이지네이션을 하려면, 두 개의 인수가 필요합니다.</p>
 <ul>
-<li><code>first</code> takes a non&#8208;negative integer.</li>
-<li><code>after</code> takes the <em>cursor type</em> as described in the <code>cursor</code> field section.</li>
+<li><code>first</code> : 음수가 아닌 정수.</li>
+<li><code>after</code> : <code>cursor</code> 필드 섹션에 설명되어 있는 <em>커서 타입</em></li>
 </ul>
-<p>The server should use those two arguments to modify the edges returned by the connection, returning edges after the <code>after</code> cursor, and returning at most <code>first</code> edges.</p>
-<p>You should generally pass the <code>cursor</code> of the last edge in the previous page for <code>after</code>.</p>
+<p>서버는 커넥션에 의해 리턴되는 엣지를 수정하기 위해 두 인수를 사용해야 합니다. <code>after</code> 커서 뒤의 엣지를 리턴하고 최대 <code>first</code> 엣지만큼 리턴해야 합니다.</p>
+<p>일반적으로 <code>after</code>에 이전 페이지에 있는 마지막 엣지의 <code>cursor</code>를 전달해야 합니다.</p>
 </section>
-<section id="sec-Backward-pagination-arguments" secid="4.2">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Backward-pagination-arguments">4.2</a></span>Backward pagination arguments</h3>
-<p>To enable backward pagination, two arguments are required.</p>
+<section id="sec-undefined.-.-" secid="4.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-">4.2</a></span>역방향 페이지네이션의 인수</h3>
+<p>역방향 페이지네이션을 하려면 두 개의 인수가 필요합니다.</p>
 <ul>
-<li><code>last</code> takes a non&#8208;negative integer.</li>
-<li><code>before</code> takes the <em>cursor type</em> as described in the <code>cursor</code> field section.</li>
+<li><code>last</code> : 음수가 아닌 정수.</li>
+<li><code>before</code> : <code>cursor</code> 필드 섹션에 설명되어 있는 <em>커서 타입</em>.</li>
 </ul>
-<p>The server should use those two arguments to modify the edges returned by the connection, returning edges before the <code>before</code> cursor, and returning at most <code>last</code> edges.</p>
-<p>You should generally pass the <code>cursor</code> of the first edge in the next page for <code>before</code>.</p>
+<p>서버는 커넥션에 의해 리턴되는 엣지를 수정하기 위해 두 인수를 사용해야 합니다. <code>before</code> 커서 앞의 엣지를 리턴하고 최대 <code>last</code>엣지만큼 리턴해야 합니다.</p>
+<p>일반적으로 <code>before</code>에 다음 페이지에 있는 첫 번째 엣지의 <code>cursor</code>를 전달해야 합니다.</p>
 </section>
-<section id="sec-Edge-order" secid="4.3">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Edge-order">4.3</a></span>Edge order</h3>
-<p>You may order the edges however your business logic dictates, and may determine the ordering based upon additional arguments not covered by this specification. But the ordering must be consistent from page to page, and importantly, <em>The ordering of edges should be the same when using <code>first</code>/<code>after</code> as when using <code>last</code>/<code>before</code>, all other arguments being equal.</em> It should not be reversed when using <code>last</code>/<code>before</code>. More formally:</p>
+<section id="sec-undefined.-.-" secid="4.3">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-">4.3</a></span>엣지 순서</h3>
+<p>비즈니스 로직이 가르키는 대로 엣지의 순서를 정할 수 있고, 본 문서에서 다루지 않은 추가적인 인수로 순서를 결정할 수 있습니다. 그러나 순서는 반드시 페이지마다 일관되어야 하며, 중요한 것은 <em><code>first</code>/<code>after</code>를 사용할 때와 마찬가지로 <code>last</code>/<code>before</code>를 사용할 때 엣지의 순서는 똑같아야 하고, 다른 모든 인수는 동일해야 합니다.</em> <code>last</code>/<code>before</code>를 사용할 때는 거꾸로 되어 있으면 안 됩니다. 좀 더 공식적으론</p>
 <ul>
-<li>When <code>before: cursor</code> is used, the edge closest to <code>cursor</code> must come <strong>last</strong> in the result <code>edges</code>.</li>
-<li>When <code>after: cursor</code> is used, the edge closest to <code>cursor</code> must come <strong>first</strong> in the result <code>edges</code>.</li>
+<li><code>before: cursor</code>가 사용될 때, <code>cursor</code>와 가장 가까운 엣지는 반드시 <code>엣지</code> 결과의 가장 <strong>마지막</strong>에 와야 합니다.</li>
+<li><code>after: cursor</code>가 사용될 땐, <code>cursor</code>와 가장 가까운 엣지는 반드시 <code>엣지</code> 결과의 <strong>첫 번째</strong>로 와야 합니다</li>
 </ul>
 </section>
-<section id="sec-Pagination-algorithm" secid="4.4">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Pagination-algorithm">4.4</a></span>Pagination algorithm</h3>
-<p>To determine what edges to return, the connection evaluates the <code>before</code> and <code>after</code> cursors to filter the edges, then evaluates <code>first</code> to slice the edges, then <code>last</code> to slice the edges.</p>
-<div id="note-a97ec" class="spec-note">
-<a href="#note-a97ec">Note</a>
-Including a value for both <code>first</code> and <code>last</code> is strongly discouraged, as it is likely to lead to confusing queries and results. The <code>PageInfo</code> section goes into more detail here.</div>
-<p>More formally:</p>
+<section id="sec-undefined.-.-" secid="4.4">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.-.-">4.4</a></span>페이지네이션 알고리즘</h3>
+<p>어떤 엣지를 리턴할지 결정하기 위해선, 커넥션은 엣지를 거르기 위해 <code>before</code> 와 <code>after</code> 커서를 평가합니다. 그다음 엣지를 자르기 위해 <code>first</code>를 평가한 후 <code>last</code>를 평가하여 엣지를 자릅니다.</p>
+<div id="note-009b3" class="spec-note">
+<a href="#note-009b3">Note</a>
+<code>first</code> 와 <code>last</code>를 둘 다 가지는 것은 쿼리와 결과가 혼동될 수 있기에 강력히 권장하지 않습니다. 이 부분은 <code>PageInfo</code> 섹션에서 좀 더 자세히 설명합니다.</div>
+<p>조금 더 공식적으로,</p>
 <div class="spec-algo" id="EdgesToReturn()">
 <span class="spec-call"><a href="#EdgesToReturn()" data-name="EdgesToReturn">EdgesToReturn</a>(<var data-name="allEdges">allEdges</var>, <var data-name="before">before</var>, <var data-name="after">after</var>, <var data-name="first">first</var>, <var data-name="last">last</var>)</span><ol>
-<li>Let <var data-name="edges">edges</var> be the result of calling <span class="spec-call"><a href="#ApplyCursorsToEdges()" data-name="ApplyCursorsToEdges">ApplyCursorsToEdges</a>(<var data-name="allEdges">allEdges</var>, <var data-name="before">before</var>, <var data-name="after">after</var>)</span>.</li>
-<li>If <var data-name="first">first</var> is set:<ol>
-<li>If <var data-name="first">first</var> is less than 0:<ol>
-<li>Throw an error.</li>
+<li><var data-name="edges">edges</var>를 ApplyCursorsToEdges(allEdges, before, after) 의 결과로 둡니다.</li>
+<li>만약 <var data-name="first">first</var> 가 set면:<ol>
+<li>만약 <var data-name="first">first</var> 가 0 보다 작다면:<ol>
+<li>에러를 발생시킵니다</li>
 </ol>
 </li>
-<li>If <var data-name="edges">edges</var> has length greater than than <var data-name="first">first</var>:<ol>
-<li>Slice <var data-name="edges">edges</var> to be of length <var data-name="first">first</var> by removing edges from the end of <var data-name="edges">edges</var>.</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>If <var data-name="last">last</var> is set:<ol>
-<li>If <var data-name="last">last</var> is less than 0:<ol>
-<li>Throw an error.</li>
-</ol>
-</li>
-<li>If <var data-name="edges">edges</var> has length greater than than <var data-name="last">last</var>:<ol>
-<li>Slice <var data-name="edges">edges</var> to be of length <var data-name="last">last</var> by removing edges from the start of <var data-name="edges">edges</var>.</li>
+<li>만약 <var data-name="edges">edges</var>가 <var data-name="first">first</var>보다 더 긴 길이를 가진 경우:<ol>
+<li><var data-name="edges">edges</var>의 끝에서 부터 엣지를 제거하여 <var data-name="edges">edges</var>와 <var data-name="first">first</var>의 길이가 같도록 자릅니다</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>Return <var data-name="edges">edges</var>.</li>
+<li>만약 <var data-name="last">last</var> 가 set면:<ol>
+<li>만약 <var data-name="last">last</var> 가 0 보다 작다면:<ol>
+<li>에러를 발생시킵니다</li>
+</ol>
+</li>
+<li>만약 <var data-name="edges">edges</var>가 <var data-name="last">last</var>보다 더 긴 길이를 가진 경우:<ol>
+<li><var data-name="edges">edges</var>의 시작에서 부터 엣지를 제거하여 <var data-name="edges">edges</var>와 <var data-name="last">last</var>의 길이가 같도록 자릅니다</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><var data-name="edges">edges</var>를 리턴합니다</li>
 </ol>
 </div>
 <div class="spec-algo" id="ApplyCursorsToEdges()">
 <span class="spec-call"><a href="#ApplyCursorsToEdges()" data-name="ApplyCursorsToEdges">ApplyCursorsToEdges</a>(<var data-name="allEdges">allEdges</var>, <var data-name="before">before</var>, <var data-name="after">after</var>)</span><ol>
-<li>Initialize <var data-name="edges">edges</var> to be <var data-name="allEdges">allEdges</var>.</li>
-<li>If <var data-name="after">after</var> is set:<ol>
-<li>Let <var data-name="afterEdge">afterEdge</var> be the edge in <var data-name="edges">edges</var> whose <var data-name="cursor">cursor</var> is equal to the <var data-name="after">after</var> argument.</li>
-<li>If <var data-name="afterEdge">afterEdge</var> exists:<ol>
-<li>Remove all elements of <var data-name="edges">edges</var> before and including <var data-name="afterEdge">afterEdge</var>.</li>
+<li><var data-name="edges">edges</var>를 <var data-name="allEdges">allEdges</var>로 초기화</li>
+<li>만약 <var data-name="after">after</var> 가 set면:<ol>
+<li><var data-name="afterEdge">afterEdge</var>를 <var data-name="cursor">cursor</var>와 <var data-name="after">after</var>의 인수가 동일한 <var data-name="edges">edges</var>의 엣지로 합니다</li>
+<li>만약 <var data-name="afterEdge">afterEdge</var>가 존재한다면 :<ol>
+<li><var data-name="afterEdge">afterEdge</var>를 포함하여 이전 <var data-name="edges">edges</var>의 모든 요소를 제거합니다</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>If <var data-name="before">before</var> is set:<ol>
-<li>Let <var data-name="beforeEdge">beforeEdge</var> be the edge in <var data-name="edges">edges</var> whose <var data-name="cursor">cursor</var> is equal to the <var data-name="before">before</var> argument.</li>
-<li>If <var data-name="beforeEdge">beforeEdge</var> exists:<ol>
-<li>Remove all elements of <var data-name="edges">edges</var> after and including <var data-name="beforeEdge">beforeEdge</var>.</li>
+<li>만약 <var data-name="before">before</var> 가 set면:<ol>
+<li><var data-name="beforeEdge">beforeEdge</var>를 <var data-name="cursor">cursor</var>와 <var data-name="before">before</var>의 인수가 동일한 <var data-name="edges">edges</var>의 엣지로 합니다</li>
+<li>만약 <var data-name="beforeEdge">beforeEdge</var> 가 존재한다면 :<ol>
+<li><var data-name="beforeEdge">beforeEdge</var>를 포함하여 이후 <var data-name="edges">edges</var>의 모든 요소를 제거합니다</li>
 </ol>
 </li>
 </ol>
 </li>
-<li>Return <var data-name="edges">edges</var>.</li>
+<li><var data-name="edges">edges</var>를 리턴합니다</li>
 </ol>
 </div>
 </section>
 </section>
-<section id="sec-undefined.PageInfo" secid="5">
-<h2><span class="spec-secid" title="link to this section"><a href="#sec-undefined.PageInfo">5</a></span>PageInfo</h2>
-<p>The server must provide a type called <code>PageInfo</code>.</p>
-<section id="sec-undefined.PageInfo.Fields" secid="5.1">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.PageInfo.Fields">5.1</a></span>Fields</h3>
-<p><code>PageInfo</code> must contain fields <code>hasPreviousPage</code> and <code>hasNextPage</code>, both of which return non&#8208;null booleans. It must also contain fields <code>startCursor</code> and <code>endCursor</code>, both of which return non&#8208;null opaque strings.</p>
-<p><code>hasPreviousPage</code> is used to indicate whether more edges exist prior to the set defined by the clients arguments. If the client is paginating with <code>last</code>/<code>before</code>, then the server must return <span class="spec-keyword">true</span> if prior edges exist, otherwise <span class="spec-keyword">false</span>. If the client is paginating with <code>first</code>/<code>after</code>, then the client may return <span class="spec-keyword">true</span> if edges prior to <code>after</code> exist, if it can do so efficiently, otherwise may return <span class="spec-keyword">false</span>. More formally:</p>
+<section id="sec-PageInfo" secid="5">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-PageInfo">5</a></span>PageInfo</h2>
+<p>서버는 <code>PageInfo</code>라는 필드를 제공해야 합니다.</p>
+<section id="sec-PageInfo.-" secid="5.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-PageInfo.-">5.1</a></span>필드</h3>
+<p><code>PageInfo</code>는 반드시 <code>hasPreviousPage</code> 와 <code>hasNextPage</code>라는 필드를 포함해야 합니다. 이 두 필드는 null이 아닌 boolean를 리턴합니다. 또한 <code>startCursor</code> 와 <code>endCursor</code> 라는 필드도 포함해야 합니다. 이 두 개의 필드는 null이 아닌 불투명 string을 리턴합니다.</p>
+<p><code>hasPreviousPage</code>는 클라이언트의 인수에 의해 집합이 정의되기 전에 더 많은 엣지가 존재하는지 나타내는데 사용됩니다. 클라이언트가 <code>last</code>/<code>before</code>로 페이지네이션을 하는 경우, 이전 엣지가 존재한다면 서버는 반드시 <span class="spec-keyword">true</span>를 리턴해야 하고, 그렇지 않다면 <span class="spec-keyword">false</span>를 리턴해야 합니다. 클라이언트가 <code>first</code>/<code>after</code>로 페이지네이션을 하는 경우, <code>after</code> 전에 엣지가 존재한다면 클라이언트는 <span class="spec-keyword">true</span>를 리턴할 것이고, 효율적으로 할 수 있으면 <span class="spec-keyword">false</span>를 리턴할 수 있습니다. 좀 더 공식적으론</p>
 <div class="spec-algo" id="HasPreviousPage()">
 <span class="spec-call"><a href="#HasPreviousPage()" data-name="HasPreviousPage">HasPreviousPage</a>(<var data-name="allEdges">allEdges</var>, <var data-name="before">before</var>, <var data-name="after">after</var>, <var data-name="first">first</var>, <var data-name="last">last</var>)</span><ol>
-<li>If <var data-name="last">last</var> is set:<ol>
-<li>Let <var data-name="edges">edges</var> be the result of calling <span class="spec-call"><a href="#ApplyCursorsToEdges()" data-name="ApplyCursorsToEdges">ApplyCursorsToEdges</a>(<var data-name="allEdges">allEdges</var>, <var data-name="before">before</var>, <var data-name="after">after</var>)</span>.</li>
-<li>If <var data-name="edges">edges</var> contains more than <var data-name="last">last</var> elements return <span class="spec-keyword">true</span>, otherwise <span class="spec-keyword">false</span>.</li>
+<li>만약 <var data-name="last">last</var> 가 집합이면 :<ol>
+<li><var data-name="edges">edges</var>를 <span class="spec-call"><a href="#ApplyCursorsToEdges()" data-name="ApplyCursorsToEdges">ApplyCursorsToEdges</a>(<var data-name="allEdges">allEdges</var>, <var data-name="before">before</var>, <var data-name="after">after</var>)</span>의 호출 결과로 정해둡니다</li>
+<li>만약 <var data-name="edges">edges</var>가 <var data-name="last">last</var>의 요소보다 많이 포함한다면 <span class="spec-keyword">true</span>를 리턴하고 아니면 <span class="spec-keyword">false</span>를 리턴합니다</li>
 </ol>
 </li>
-<li>If <var data-name="after">after</var> is set:<ol>
-<li>If the server can efficiently determine that elements exist prior to <var data-name="after">after</var>, return <span class="spec-keyword">true</span>.</li>
+<li>만약 <var data-name="after">after</var> 가 집합이면 :<ol>
+<li>만약 서버가 <var data-name="after">after</var> 이전에 요소가 존재하는지 효율적으로 알 수 있으면 <span class="spec-keyword">true</span>를 리턴합니다</li>
 </ol>
 </li>
-<li>Return <span class="spec-keyword">false</span>.</li>
+<li><span class="spec-keyword">false</span>를 리턴합니다</li>
 </ol>
 </div>
-<p><code>hasNextPage</code> is used to indicate whether more edges exist following the set defined by the clients arguments. If the client is paginating with <code>first</code>/<code>after</code>, then the server must return <span class="spec-keyword">true</span> if further edges exist, otherwise <span class="spec-keyword">false</span>. If the client is paginating with <code>last</code>/<code>before</code>, then the client may return <span class="spec-keyword">true</span> if edges further from <code>before</code> exist, if it can do so efficiently, otherwise may return <span class="spec-keyword">false</span>. More formally:</p>
+<p><code>hasNextPage</code>는 클라이언트 인수에 의해 정의된 집합 뒤에 더 많은 엣지가 존재하는지 나타내는데 사용됩니다. 클라이언트가 <code>first</code>/<code>after</code>로 페이지네이션을 하는 경우, 추가적인 엣지가 존재한다면 <span class="spec-keyword">true</span>를 리턴하고, 그렇지 않다면 <span class="spec-keyword">false</span>를 리턴합니다. 클라이언트가 <code>last</code>/<code>before</code>로 페이지네이션을 하는 경우, <code>before</code> 뒤에 엣지가 존재한다면 클라이언트는 <span class="spec-keyword">true</span>를 리턴할 것이고, 더 효율적으로 할 수 있으면 <span class="spec-keyword">false</span>를 리턴합니다. 좀 더 공식적으론</p>
 <div class="spec-algo" id="HasNextPage()">
 <span class="spec-call"><a href="#HasNextPage()" data-name="HasNextPage">HasNextPage</a>(<var data-name="allEdges">allEdges</var>, <var data-name="before">before</var>, <var data-name="after">after</var>, <var data-name="first">first</var>, <var data-name="last">last</var>)</span><ol>
-<li>If <var data-name="first">first</var> is set:<ol>
-<li>Let <var data-name="edges">edges</var> be the result of calling <span class="spec-call"><a href="#ApplyCursorsToEdges()" data-name="ApplyCursorsToEdges">ApplyCursorsToEdges</a>(<var data-name="allEdges">allEdges</var>, <var data-name="before">before</var>, <var data-name="after">after</var>)</span>.</li>
-<li>If <var data-name="edges">edges</var> contains more than <var data-name="first">first</var> elements return <span class="spec-keyword">true</span>, otherwise <span class="spec-keyword">false</span>.</li>
+<li>만약 <var data-name="first">first</var> 가 set면 :<ol>
+<li><var data-name="edges">edges</var>를 <span class="spec-call"><a href="#ApplyCursorsToEdges()" data-name="ApplyCursorsToEdges">ApplyCursorsToEdges</a>(<var data-name="allEdges">allEdges</var>, <var data-name="before">before</var>, <var data-name="after">after</var>)</span>의 호출한 결과로 둡니다.</li>
+<li>만약 <var data-name="edges">edges</var>가 <var data-name="first">first</var> 요소보다 많이 가지고 있으면 <span class="spec-keyword">true</span>를 리턴하고 아니면 <span class="spec-keyword">false</span>를 리턴합니다</li>
 </ol>
 </li>
-<li>If <var data-name="before">before</var> is set:<ol>
-<li>If the server can efficiently determine that elements exist following <var data-name="before">before</var>, return <span class="spec-keyword">true</span>.</li>
+<li>만약 <var data-name="before">before</var> 가 set:<ol>
+<li>만약 서버가 <var data-name="before">before</var> 후에 요소가 존재하는지 효율적으로 알 수 있으면 <span class="spec-keyword">true</span>를 리턴합니다 </li>
 </ol>
 </li>
-<li>Return <span class="spec-keyword">false</span>.</li>
+<li><span class="spec-keyword">false</span>를 리턴</li>
 </ol>
 </div>
-<div id="note-95f8a" class="spec-note">
-<a href="#note-95f8a">Note</a>
-When both <code>first</code> and <code>last</code> are included, both of the fields should be set according to the above algorithms, but their meaning as it relates to pagination becomes unclear. This is among the reasons that pagination with both <code>first</code> and <code>last</code> is discouraged.</div>
-<p><code>startCursor</code> and <code>endCursor</code> must be the cursors corresponding to the first and last nodes in <code>edges</code>, respectively.</p>
-<div id="note-4ca64" class="spec-note">
-<a href="#note-4ca64">Note</a>
-As this spec was created with Relay Classic in mind, it&rsquo;s worth noting that Relay Legacy did not define <code>startCursor</code> and <code>endCursor</code>, and relied on selecting the <code>cursor</code> of each edge; Relay Modern began selecting <code>startCursor</code> and <code>endCursor</code> instead to save bandwidth (since it doesn&rsquo;t use any cursors in between).</div>
+<div id="note-c804e" class="spec-note">
+<a href="#note-c804e">Note</a>
+<code>first</code> 와 <code>last</code> 둘 다 포함되어 있을 때, 위의 알고리즘에 따르면 두 필드 모두 set여야 합니다만, 페이지네이션에 관한 의미는 불분명해집니다. 이는 <code>first</code>와 <code>last</code> 두 개 모두 사용하여 페이지네이션을 권장하지 않은 이유 중 하나입니다.</div>
+<p><code>startCursor</code>와 <code>endCursor</code>는 각각 <code>edges</code>의 첫 번째와 마지막 노드에 해당되는 커서여야 합니다.</p>
+<div id="note-c4c51" class="spec-note">
+<a href="#note-c4c51">Note</a>
+이 스펙은 Relay Classic을 염두에 두고 만들어진 것이므로, Relay Legacy는 <code>startCursor</code> 와 <code>endCursor</code>를 정의하지 않았다는 점과 각각의 에지에서 <code>cursor</code>를 선택하는 것에 의존했다는 점은 주목할 만합니다. Relay Modern은 대역폭을 절약하는 것 대신에(그 사이에 커서를 사용하지 않기 때문에), <code>startCursor</code> 와 <code>endCursor</code>을 선정하기 시작했습니다.</div>
 </section>
-<section id="sec-undefined.PageInfo.Introspection" secid="5.2">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-undefined.PageInfo.Introspection">5.2</a></span>Introspection</h3>
-<p>A server that correctly implements the above requirement would accept the following introspection query, and return the provided response:</p>
+<section id="sec-PageInfo.-" secid="5.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-PageInfo.-">5.2</a></span>스키마 확인</h3>
+<p>위의 요구사항을 정확하게 충족하는 서버는 아래의 스키마 확인 쿼리를 받아들이고 주어진 응답을 제공합니다.</p>
 <pre><code><span class="token punctuation">{</span>
   __type<span class="token punctuation">(</span><span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token string">"PageInfo"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     fields <span class="token punctuation">{</span>
@@ -1256,7 +1256,7 @@ As this spec was created with Relay Classic in mind, it&rsquo;s worth noting tha
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>returns</p>
+<p>리턴</p>
 <pre><code><span class="token punctuation">{</span>
   <span class="token property">"data"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token property">"__type"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -1319,48 +1319,48 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label>
 <div class="spec-sidebar" aria-hidden>
 <div class="spec-toc">
-<div class="title"><a href="#">GraphQL Cursor Connections Specification</a></div>
-<ol><li id="_sidebar_1"><a href="#sec-Reserved-Types"><span class="spec-secid">1</span>Reserved Types</a></li>
-<li id="_sidebar_2"><a href="#sec-Connection-Types"><span class="spec-secid">2</span>Connection Types</a>
+<div class="title"><a href="#">GraphQL 커서 연결 사양</a></div>
+<ol><li id="_sidebar_1"><a href="#sec-undefined.-"><span class="spec-secid">1</span>예약된 타입</a></li>
+<li id="_sidebar_2"><a href="#sec-undefined.-"><span class="spec-secid">2</span>커넥션 타입</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_2" /><label for="_sidebar_toggle_2"></label>
 <ol>
-<li id="_sidebar_2.1"><a href="#sec-Connection-Types.Fields"><span class="spec-secid">2.1</span>Fields</a>
+<li id="_sidebar_2.1"><a href="#sec-undefined.-.-"><span class="spec-secid">2.1</span>필드</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_2.1" /><label for="_sidebar_toggle_2.1"></label>
 <ol>
-<li id="_sidebar_2.1.1"><a href="#sec-Edges"><span class="spec-secid">2.1.1</span>Edges</a></li>
-<li id="_sidebar_2.1.2"><a href="#sec-Connection-Types.Fields.PageInfo"><span class="spec-secid">2.1.2</span>PageInfo</a></li>
+<li id="_sidebar_2.1.1"><a href="#sec-undefined.-.-.-"><span class="spec-secid">2.1.1</span>엣지</a></li>
+<li id="_sidebar_2.1.2"><a href="#sec-PageInfo-"><span class="spec-secid">2.1.2</span>PageInfo 필드</a></li>
 </ol>
 </li>
-<li id="_sidebar_2.2"><a href="#sec-Connection-Types.Introspection"><span class="spec-secid">2.2</span>Introspection</a></li>
+<li id="_sidebar_2.2"><a href="#sec-undefined.-.-"><span class="spec-secid">2.2</span>스키마 확인</a></li>
 </ol>
 </li>
-<li id="_sidebar_3"><a href="#sec-Edge-Types"><span class="spec-secid">3</span>Edge Types</a>
+<li id="_sidebar_3"><a href="#sec-undefined.-"><span class="spec-secid">3</span>엣지 타입</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_3" /><label for="_sidebar_toggle_3"></label>
 <ol>
-<li id="_sidebar_3.1"><a href="#sec-Edge-Types.Fields"><span class="spec-secid">3.1</span>Fields</a>
+<li id="_sidebar_3.1"><a href="#sec-undefined.-.-"><span class="spec-secid">3.1</span>필드</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_3.1" /><label for="_sidebar_toggle_3.1"></label>
 <ol>
-<li id="_sidebar_3.1.1"><a href="#sec-Node"><span class="spec-secid">3.1.1</span>Node</a></li>
-<li id="_sidebar_3.1.2"><a href="#sec-Cursor"><span class="spec-secid">3.1.2</span>Cursor</a></li>
+<li id="_sidebar_3.1.1"><a href="#sec-undefined.-.-.-"><span class="spec-secid">3.1.1</span>노드</a></li>
+<li id="_sidebar_3.1.2"><a href="#sec-undefined.-.-.-"><span class="spec-secid">3.1.2</span>커서</a></li>
 </ol>
 </li>
-<li id="_sidebar_3.2"><a href="#sec-Edge-Types.Introspection"><span class="spec-secid">3.2</span>Introspection</a></li>
+<li id="_sidebar_3.2"><a href="#sec-undefined.-.-"><span class="spec-secid">3.2</span>스키마 확인</a></li>
 </ol>
 </li>
-<li id="_sidebar_4"><a href="#sec-Arguments"><span class="spec-secid">4</span>Arguments</a>
+<li id="_sidebar_4"><a href="#sec-undefined.-"><span class="spec-secid">4</span>인수</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_4" /><label for="_sidebar_toggle_4"></label>
 <ol>
-<li id="_sidebar_4.1"><a href="#sec-Forward-pagination-arguments"><span class="spec-secid">4.1</span>Forward pagination arguments</a></li>
-<li id="_sidebar_4.2"><a href="#sec-Backward-pagination-arguments"><span class="spec-secid">4.2</span>Backward pagination arguments</a></li>
-<li id="_sidebar_4.3"><a href="#sec-Edge-order"><span class="spec-secid">4.3</span>Edge order</a></li>
-<li id="_sidebar_4.4"><a href="#sec-Pagination-algorithm"><span class="spec-secid">4.4</span>Pagination algorithm</a></li>
+<li id="_sidebar_4.1"><a href="#sec-undefined.-.-"><span class="spec-secid">4.1</span>정방향 페이지네이션의 인수</a></li>
+<li id="_sidebar_4.2"><a href="#sec-undefined.-.-"><span class="spec-secid">4.2</span>역방향 페이지네이션의 인수</a></li>
+<li id="_sidebar_4.3"><a href="#sec-undefined.-.-"><span class="spec-secid">4.3</span>엣지 순서</a></li>
+<li id="_sidebar_4.4"><a href="#sec-undefined.-.-"><span class="spec-secid">4.4</span>페이지네이션 알고리즘</a></li>
 </ol>
 </li>
-<li id="_sidebar_5"><a href="#sec-undefined.PageInfo"><span class="spec-secid">5</span>PageInfo</a>
+<li id="_sidebar_5"><a href="#sec-PageInfo"><span class="spec-secid">5</span>PageInfo</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_5" /><label for="_sidebar_toggle_5"></label>
 <ol>
-<li id="_sidebar_5.1"><a href="#sec-undefined.PageInfo.Fields"><span class="spec-secid">5.1</span>Fields</a></li>
-<li id="_sidebar_5.2"><a href="#sec-undefined.PageInfo.Introspection"><span class="spec-secid">5.2</span>Introspection</a></li>
+<li id="_sidebar_5.1"><a href="#sec-PageInfo.-"><span class="spec-secid">5.1</span>필드</a></li>
+<li id="_sidebar_5.2"><a href="#sec-PageInfo.-"><span class="spec-secid">5.2</span>스키마 확인</a></li>
 </ol>
 </li>
 <li id="_sidebar_index"><a href="#index"><span class="spec-secid">§</span>Index</a></li>
