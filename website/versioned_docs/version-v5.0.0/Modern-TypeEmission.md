@@ -1,9 +1,8 @@
 ---
-id: version-v5.0.0-type-emission
+id: type-emission
 title: Type Emission
 original_id: type-emission
 ---
-
 As part of its normal work, `relay-compiler` will emit type information for your language of choice that helps you write type-safe application code. These types are included in the artifacts that `relay-compiler` generates to describe your operations and fragments.
 
 Regardless of your choice of language, all language plugins will emit roughly the same sort of type-information, but be sure to read the documentation for other [language plugins](#language-plugins) to learn about their specifics.
@@ -14,8 +13,8 @@ The shape of the variables object used for query, mutation, or subscription oper
 
 In this example the emitted type-information would require the variables object to contain a `page` key with a non-null string.
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Flow-->
+#### Flow
+
 ```javascript
 /**
  * export type ExampleQueryVariables = {|
@@ -38,8 +37,11 @@ const variables: ExampleQueryVariables = {
   `}
   variables={variables}
 />
+
 ```
-<!--TypeScript-->
+
+#### TypeScript
+
 ```javascript
 /**
  * export type ExampleQueryVariables = {
@@ -63,8 +65,8 @@ import { ExampleQuery } from "__generated__/ExampleQuery.graphql"
     artistID: 'banksy',
   }}
 />
+
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
 
 ### Operation/Fragment selection-set data
 
@@ -72,8 +74,8 @@ The shape of the data selected in a operation or fragment, following the [data-m
 
 In this example the emitted type-information describes the response data available to the operation’s render function.
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Flow-->
+#### Flow
+
 ```javascript
 /**
  * export type ExampleQueryResponse = {|
@@ -99,8 +101,11 @@ import type { ExampleQueryResponse } from "__generated__/ExampleQuery.graphql"
     return <div>Loading</div>
   }}
 />
+
 ```
-<!--TypeScript-->
+
+#### TypeScript
+
 ```javascript
 /**
  * export type ExampleQueryResponse = {
@@ -129,13 +134,13 @@ import { ExampleQuery } from "__generated__/ExampleQuery.graphql"
     return <div>Loading</div>
   }}
 />
+
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
 
 Similarly, in this example the emitted type-information describes the prop data that the container expects to receive.
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Flow-->
+#### Flow
+
 ```javascript
 /**
  * export type ExampleFragment_artist = {|
@@ -156,8 +161,11 @@ export const ExampleFragment = createFragmentContainer(
     `
   }
 )
+
 ```
-<!--TypeScript-->
+
+#### TypeScript
+
 ```javascript
 /**
  * export type ExampleFragment_artist = {
@@ -178,8 +186,8 @@ export const ExampleFragment = createFragmentContainer(
     `,
   }
 )
+
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
 
 ### Fragment references
 
@@ -189,8 +197,8 @@ _Please read [this important caveat](#single-artifact-directory) about actually 
 
 Consider a component that composes the above fragment container example. In this example, the emitted type-information of the child container receives a unique opaque identifier type, called a fragment reference, which the type-information emitted for the parent’s fragment references in the location where the child’s fragment is spread. Thus ensuring that the child’s fragment is spread into the parent’s fragment _and_ the correct fragment reference is passed to the child container at runtime.
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Flow-->
+#### Flow
+
 ```javascript
 /**
  * import type { FragmentReference } from "relay-runtime";
@@ -229,8 +237,11 @@ import type { ExampleQueryResponse } from "__generated__/ExampleQuery.graphql"
     return <div>Loading</div>
   }}
 />
+
 ```
-<!--TypeScript-->
+
+#### TypeScript
+
 ```javascript
 /**
  * declare const _ExampleFragment_artist$ref: unique symbol;
@@ -272,8 +283,8 @@ import { ExampleQuery } from "__generated__/ExampleQuery.graphql"
     return <div>Loading</div>
   }}
 />
+
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
 
 ## Single artifact directory
 
@@ -282,12 +293,15 @@ An important caveat to note is that by default strict fragment reference type-in
 To enable this feature, you will have to tell the compiler to store all the artifacts in a single directory, like so:
 
 ```shell
+
 $ relay-compiler --artifactDirectory ./src/__generated__ […]
+
 ```
 
 …and additionally inform the babel plugin in your `.babelrc` config where to look for the artifacts:
 
 ```json
+
 {
   "plugins": [
     ["relay", { "artifactDirectory": "./src/__generated__" }]
@@ -301,8 +315,8 @@ It is recommended to alias this directory in your module resolution configuratio
 
 The reason is that `relay-compiler` and its artifact emission is stateless. Meaning that it does not keep track of locations of original source files and where the compiler previously saved the accompanying artifact on disk. Thus, if the compiler were to emit artifacts that try to import fragment reference types from _other_ artifacts, the compiler would:
 
-* first need to know where on disk that other artifact exists;
-* and update imports when the other artifact changes location on disk.
+-   first need to know where on disk that other artifact exists;
+-   and update imports when the other artifact changes location on disk.
 
 Facebook uses a module system called [Haste], in which all source files are considered in a flat namespace. This means that an import declaration does not need to specify the path to another module and thus there is no need for the compiler to ever consider the above issues. I.e. an import only needs to specify the basename of the module filename and Haste takes care of actually finding the right module at import time. Outside of Facebook, however, usage of the Haste module system is non-existent nor encouraged, thus the decision to not import fragment reference types but instead type them as `any`.
 
@@ -310,28 +324,36 @@ At its simplest, we can consider Haste as a single directory that contains all m
 
 ## Language plugins
 
-* Flow: This is the default and builtin language plugin. You can explicitly enable it like so:
+-   Flow: This is the default and builtin language plugin. You can explicitly enable it like so:
 
-  ```shell
-  $ relay-compiler --language javascript […]
-  ```
+    ```shell
+
+    $ relay-compiler --language javascript […]
+
+    ```
 
 By default, Flow types are emitted inside of comments to avoid forcing your project to use Flow. Flow types inside of comments is perfectly valid Flow, however, some editors and IDEs (like WebStorm/IDEA) do not understand Flow unless it's in plain source code. In order to solve that, there's a language plugin maintained by the community that replicates the functionality of the default builtin plugin, but emits the Flow types as plain source and not inside comments. Installation and usage:
 
 ```shell
+
   $ yarn add --dev relay-compiler-language-js-flow-uncommented
   $ relay-compiler --language js-flow-uncommented […]
-  ```
 
-* [TypeScript](https://github.com/relay-tools/relay-compiler-language-typescript): This is a language plugin for the TypeScript language maintained by the community. Install and enable it like so:
+```
 
-  ```shell
-  $ yarn add --dev relay-compiler-language-typescript @types/react-relay @types/relay-runtime
-  $ relay-compiler --language typescript […]
-  ```
+-   [TypeScript](https://github.com/relay-tools/relay-compiler-language-typescript): This is a language plugin for the TypeScript language maintained by the community. Install and enable it like so:
+
+    ```shell
+
+    $ yarn add --dev relay-compiler-language-typescript @types/react-relay @types/relay-runtime
+    $ relay-compiler --language typescript […]
+
+    ```
 
 If you are looking to create your own language plugin, refer to the `relay-compiler` [language plugin interface][plugin-interface].
 
-[data-masking]: ./thinking-in-relay.html#data-masking
+[data-masking]: ./PrinciplesAndArchitecture-ThinkingInRelay.md#data-masking
+
 [Haste]: https://twitter.com/dan_abramov/status/758655309212704768
-[plugin-interface]: https://github.com/facebook/relay/blob/master/packages/relay-compiler/language/RelayLanguagePluginInterface.js
+
+[plugin-interface]: https://github.com/facebook/relay/blob/main/packages/relay-compiler/language/RelayLanguagePluginInterface.js

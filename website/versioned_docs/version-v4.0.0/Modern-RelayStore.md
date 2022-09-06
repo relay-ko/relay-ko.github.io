@@ -1,19 +1,19 @@
 ---
-id: version-v4.0.0-relay-store
+id: relay-store
 title: Relay Store
 original_id: relay-store
 ---
-
-The Relay Store can be used to programmatically update client-side data inside [`updater` functions](./mutations.html#using-updater-and-optimisticupdater). The following is a reference of the Relay Store interface.
+The Relay Store can be used to programmatically update client-side data inside [`updater` functions](Modern-Mutations.md#using-updater-and-optimisticupdater). The following is a reference of the Relay Store interface.
 
 Table of Contents:
-- [RecordSourceSelectorProxy](#recordsourceselectorproxy)
-- [RecordProxy](#recordproxy)
-- [ConnectionHandler](#connectionhandler)
+
+-   [RecordSourceSelectorProxy](#recordsourceselectorproxy)
+-   [RecordProxy](#recordproxy)
+-   [ConnectionHandler](#connectionhandler)
 
 ## RecordSourceSelectorProxy
 
-The `RecordSourceSelectorProxy` is the type of the `store` that [`updater` functions](./mutations.html#using-updater-and-optimisticupdater) receive as an argument. The following is the `RecordSourceSelectorProxy` interface:
+The `RecordSourceSelectorProxy` is the type of the `store` that [`updater` functions](Modern-Mutations.md#using-updater-and-optimisticupdater) receive as an argument. The following is the `RecordSourceSelectorProxy` interface:
 
 ```javascript
 interface RecordSourceSelectorProxy {
@@ -31,6 +31,7 @@ interface RecordSourceSelectorProxy {
 Creates a new record in the store given a `dataID` and the `typeName` as defined by the GraphQL schema. Returns a [`RecordProxy`](#recordproxy) which serves as an interface to mutate the newly created record.
 
 #### Example
+
 ```javascript
 const record = store.create(dataID, 'Todo');
 ```
@@ -40,6 +41,7 @@ const record = store.create(dataID, 'Todo');
 Deletes a record from the store given its `dataID`.
 
 #### Example
+
 ```javascript
 store.delete(dataID);
 ```
@@ -49,6 +51,7 @@ store.delete(dataID);
 Retrieves a record from the store given its `dataID`. Returns a [`RecordProxy`](#recordproxy) which serves as an interface to mutate the record.
 
 #### Example
+
 ```javascript
 const record = store.get(dataID);
 ```
@@ -60,6 +63,7 @@ Returns the [`RecordProxy`](#recordproxy) representing the root of the GraphQL d
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 viewer {
   id
@@ -67,6 +71,7 @@ viewer {
 ```
 
 Usage:
+
 ```javascript
 // Represents root query
 const root = store.getRoot();
@@ -79,6 +84,7 @@ Retrieves a root field from the store given the `fieldName`, as defined by the G
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 viewer {
   id
@@ -86,6 +92,7 @@ viewer {
 ```
 
 Usage:
+
 ```javascript
 const viewer = store.getRootField('viewer');
 ```
@@ -97,6 +104,7 @@ Retrieves a root field that represents a collection from the store given the `fi
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 nodes(first: 10) {
   # ...
@@ -104,6 +112,7 @@ nodes(first: 10) {
 ```
 
 Usage:
+
 ```javascript
 const nodes = store.getPluralRootField('nodes');
 ```
@@ -144,6 +153,7 @@ interface RecordProxy {
 Returns the dataID of the current record.
 
 #### Example
+
 ```javascript
 const id = record.getDataID();
 ```
@@ -153,8 +163,10 @@ const id = record.getDataID();
 Gets the type of the current record, as defined by the GraphQL schema.
 
 #### Example
+
 ```javascript
 const type = user.getType();  // User
+
 ```
 
 ### `getValue(name: string, arguments?: ?Object): mixed`
@@ -164,6 +176,7 @@ Gets the value of a field in the current record given the field name.
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 viewer {
   id
@@ -172,6 +185,7 @@ viewer {
 ```
 
 Usage:
+
 ```javascript
 const name = viewer.getValue('name');
 ```
@@ -181,6 +195,7 @@ Optionally, if the field takes arguments, you can pass a bag of `variables`.
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 viewer {
   id
@@ -189,6 +204,7 @@ viewer {
 ```
 
 Usage:
+
 ```javascript
 const name = viewer.getValue('name', {arg: 'value'});
 ```
@@ -200,6 +216,7 @@ Retrieves a record associated with the current record given the field name, as d
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 rootField {
   viewer {
@@ -210,6 +227,7 @@ rootField {
 ```
 
 Usage:
+
 ```javascript
 const rootField = store.getRootField('rootField');
 const viewer = rootField.getLinkedRecord('viewer');
@@ -220,6 +238,7 @@ Optionally, if the linked record takes arguments, you can pass a bag of `variabl
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 rootField {
   viewer(arg: $arg) {
@@ -229,6 +248,7 @@ rootField {
 ```
 
 Usage:
+
 ```javascript
 const rootField = store.getRootField('rootField');
 const viewer = rootField.getLinkedRecord('viewer', {arg: 'value'});
@@ -241,6 +261,7 @@ Retrieves the set of records associated with the current record given the field 
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 rootField {
   nodes {
@@ -250,6 +271,7 @@ rootField {
 ```
 
 Usage:
+
 ```javascript
 const rootField = store.getRootField('rootField');
 const nodes = rootField.getLinkedRecords('nodes');
@@ -260,6 +282,7 @@ Optionally, if the linked record takes arguments, you can pass a bag of `variabl
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 rootField {
   nodes(first: $count) {
@@ -269,6 +292,7 @@ rootField {
 ```
 
 Usage:
+
 ```javascript
 const rootField = store.getRootField('rootField');
 const viewer = rootField.getLinkedRecord('viewer', {count: 10});
@@ -281,6 +305,7 @@ Retrieves the a record associated with the current record given the field name, 
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 rootField {
   viewer {
@@ -290,9 +315,11 @@ rootField {
 ```
 
 Usage:
+
 ```javascript
 const rootField = store.getRootField('rootField');
 const newViewer = rootField.getOrCreateLinkedRecord('viewer', 'User'); // Will create if it doesn't exist
+
 ```
 
 Optionally, if the linked record takes arguments, you can pass a bag of `variables` as well.
@@ -302,6 +329,7 @@ Optionally, if the linked record takes arguments, you can pass a bag of `variabl
 Mutates the current record by setting a new value on the specified field. Returns the mutated record.
 
 Given the GraphQL document:
+
 ```graphql
 viewer {
   id
@@ -310,6 +338,7 @@ viewer {
 ```
 
 Usage:
+
 ```javascript
 viewer.setValue('New Name', 'name');
 ```
@@ -325,10 +354,12 @@ viewer.setValue('New Name', 'name', {arg: 'value'});
 Mutates the current record by copying the fields over from the passed in record `sourceRecord`.
 
 #### Example
+
 ```javascript
 const record = store.get(id1);
 const otherRecord = store.get(id2);
 record.copyFieldsFrom(otherRecord); // Mutates `record`
+
 ```
 
 ### `setLinkedRecord(record: RecordProxy, name: string, arguments?: ?Object)`
@@ -338,6 +369,7 @@ Mutates the current record by setting a new linked record on the given the field
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 rootField {
   viewer {
@@ -347,10 +379,12 @@ rootField {
 ```
 
 Usage:
+
 ```javascript
 const rootField = store.getRootField('rootField');
 const newViewer = store.create(/* ... */)''
 rootField.setLinkedRecord(newViewer, 'viewer'); //
+
 ```
 
 Optionally, if the linked record takes arguments, you can pass a bag of `variables` as well.
@@ -362,6 +396,7 @@ Mutates the current record by setting a new set of linked records on the given t
 #### Example
 
 Given the GraphQL document:
+
 ```graphql
 rootField {
   nodes {
@@ -371,11 +406,13 @@ rootField {
 ```
 
 Usage:
+
 ```javascript
 const rootField = store.getRootField('rootField');
 const newNode = store.create(/* ... */);
 const newNodes = [...rootField.getLinkedRecords('nodes'), newNode];
 rootField.setLinkedRecords(newNodes, 'nodes'); //
+
 ```
 
 Optionally, if the linked record takes arguments, you can pass a bag of `variables` as well.
@@ -430,6 +467,7 @@ fragment FriendsFragment on User {
 ```
 
 Accessing a plain connection field like this is the same as other regular field:
+
 ```javascript
 // The `friends` connection record can be accessed with:
 const user = store.get(userID);
@@ -439,7 +477,8 @@ const friends = user && user.getLinkedRecord(user, 'friends');
 const edges = friends.getLinkedRecords('edges');
 ```
 
-In a [pagination container](./pagination-container.html), we usually annotate the actual connection field with `@connection` to tell Relay which part needs to be paginated:
+In a [pagination container](Modern-PaginationContainer.md), we usually annotate the actual connection field with `@connection` to tell Relay which part needs to be paginated:
+
 ```graphql
 fragment FriendsFragment on User {
   friends(first: 10, orderby: "firstname") @connection(
@@ -455,7 +494,9 @@ fragment FriendsFragment on User {
 ```
 
 For connections like the above, `ConnectionHandler` helps us find the record:
+
 ```
+
 import {ConnectionHandler} from 'relay-runtime';
 
 // The `friends` connection record can be accessed with:
@@ -486,6 +527,7 @@ Given a connection, inserts the edge at the end of the connection, or after the 
 #### Example
 
 ```
+
 const user = store.get(userID);
 const friends = ConnectionHandler.getConnection(user, 'friends');
 const edge = ConnectionHandler.createEdge(store, friends, user, 'UserEdge');
@@ -504,6 +546,7 @@ Given a connection, deletes any edges whose id matches the given id.
 #### Example
 
 ```
+
 const user = store.get(userID);
 const friends = ConnectionHandler.getConnection(user, 'friends');
 ConnectionHandler.deleteNode(friends, idToDelete);

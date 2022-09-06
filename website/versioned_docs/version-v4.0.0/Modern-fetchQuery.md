@@ -1,9 +1,8 @@
 ---
-id: version-v4.0.0-fetch-query
+id: fetch-query
 title: fetchQuery
 original_id: fetch-query
 ---
-
 You can use the `fetchQuery` function to imperatively make GraphQL Requests. This is useful for cases where you want to make requests outside of React but still utilize the Relay store and network layer.
 
 ```javascript
@@ -27,12 +26,11 @@ fetchQuery(environment, query, variables)
   });
 ```
 
-
 ## Arguments
 
-* `environment`: The [Relay Environment](./relay-environment.html)
-* `query`: The `graphql` tagged query. **Note:** `relay-compiler` enforces the query to be named as `<FileName>Query`.
-* `variables`: Object containing set of variables to pass to the GraphQL query, i.e. a mapping from variable name to value.
+-   `environment`: The [Relay Environment](Modern-RelayEnvironment.md)
+-   `query`: The `graphql` tagged query. **Note:** `relay-compiler` enforces the query to be named as `<FileName>Query`.
+-   `variables`: Object containing set of variables to pass to the GraphQL query, i.e. a mapping from variable name to value.
 
 ## Return Value
 
